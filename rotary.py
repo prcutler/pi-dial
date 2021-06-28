@@ -7,7 +7,7 @@ mute_button = Button(13)
 
 # Set Denon AVR stats
 zones = {"Zone2": "Paul Office"}
-rec = denonavr.DenonAVR("192.168.1.119", name="Name of Main Zone", add_zones=zones)
+rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.async_setup()
 rec.async_update()
 
