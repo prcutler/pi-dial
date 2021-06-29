@@ -1,7 +1,8 @@
 import denonavr
 
 
-# Set Denon AVR stats
+# Set Denon AVR stats using old method
+# TODO: Try print functions below using new async methods
 zones = {"Zone2": "Zone 2"}
 rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 # rec.async_setup()
@@ -10,8 +11,7 @@ rec.update()
 rec.zones['Zone2'].update()
 
 
-# Mute Zone 2
-# print(rec.zones)
+# Test via print statement that the program can see both Zone 1 and 2 on the Denon receiver
 print("Main Zone Volume: ", rec.volume)
 print("Main Zone Power: ", rec.power)
 print("Zone 2 Volume: ", rec.zones['Zone2'].volume)
