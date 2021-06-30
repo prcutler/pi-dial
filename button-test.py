@@ -66,7 +66,6 @@ def volume_knob():
         pause()
 
 
-
 def mute_switch():
     while True:
         if rec.zones['Zone2'].muted is True:
