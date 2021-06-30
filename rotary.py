@@ -12,15 +12,16 @@ rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
 rec.zones['Zone2'].update()
 
-# receiver = rec.zones['Zone2']
+# At startup, print what input Zone 2 is on and what the volume is currently set to
 print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 #print(rec.zones)
 
+# At startup, turn mute off on Zone 2
 rec.zones['Zone2'].mute(False)
 rec.zones['Zone2'].update()
 print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
 
-## This mutes but does not un-mute
+## Method that when the button is pushed turns mute on if not muted, and if muted, turns mute off.
 def mute_receiver():
     print("mute status: ", rec.zones['Zone2'].muted)
     
