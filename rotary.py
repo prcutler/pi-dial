@@ -12,16 +12,16 @@ rec.update()
 rec.zones['Zone2'].update()
 
 # receiver = rec.zones['Zone2']
-print(rec.zones['Zone2'].mute, rec.zones['Zone2'].volume)
+print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 #print(rec.zones)
 
 rec.zones['Zone2'].mute(False)
 rec.update()
 
-
+print("Ready")
 
 while True:
-    if mute_button.is_pressed:
+    if mute_button.when_pressed:
         if rec.zones['Zone2'].mute is True:
             rec.zones['Zone2'].mute(False)
             print("Turning off mute")
