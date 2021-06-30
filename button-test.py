@@ -1,9 +1,8 @@
-from gpiozero import Button, RotaryEncoder
 from threading import Event
 import denonavr
+from pigpio_encoder.rotary import Rotary
 
-# GPIO pints in use
-mute_button = Button(13)
+# button-test.py will be used to test the pigpio_encoder library and rotary.py uses gpiozero
 
 # Set Denon AVR stats
 zones = {"Zone2": "Paul Office"}
@@ -21,6 +20,36 @@ print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
 
 print("mute status: ", rec.zones['Zone2'].muted)
 
+def receiver_dial():
+
+    def rotary_callback(counter):
+        print("Counter value: ", counter)
+
+    def sw_short():
+        print("Button pressed")
+
+    my_rotary = Rotary(
+        clk_gpio=5,
+        dt_gpio=6,
+        sw_gpio=17
+    )
+
+    my_rotary.setup_rotary(
+        min = 10,
+        max = 300,
+        scale=5,
+        debounce=200,
+        rotary_callback=rotary_callback
+    )
+
+    my_rotary.setup_switch(
+        debounce=200,
+        long_press=False,
+        sw_short_callback=sw_short
+    )
+
+    my_rotary.watch()
+
 def mute_switch():
     while True:
         if rec.zones['Zone2'].muted is True:
@@ -37,4 +66,4 @@ def mute_switch():
             print("Muting")
 
 if __name__ == "__main__":
-    mute_switch()
+    receiver_dial()
