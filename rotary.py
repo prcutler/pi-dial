@@ -18,6 +18,7 @@ print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 
 rec.zones['Zone2'].mute(False)
 rec.update()
+print(rec.zones['Zone2'].mute)
 
 def receiver_mute():
     if rec.zones['Zone2'].mute is False:
