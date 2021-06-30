@@ -32,15 +32,15 @@ def volume_knob():
     while True:
 
         def volume_up():
-            steps_turned_up = rotor.steps
+            louder_steps= rotor.steps
             rec.zones['Zone2'].volume_up()
-            print("Turned it up this much: ", steps_turned_up)
+            print("Turned it up this much: ", louder_steps)
 
         def volume_down():
             # softer = (rotor.steps + 180) / 360
-            softer = rotor.steps
+            softer_steps = rotor.steps
             rec.zones['Zone2'].volume_down()
-            print("Turned it down this much: ", softer)
+            print("Turned it down this much: ", softer_steps)
 
         def press_mute():
             if rec.zones['Zone2'].muted is True:
