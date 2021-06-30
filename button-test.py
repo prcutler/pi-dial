@@ -24,7 +24,7 @@ print("Volume is: ", rec.zones['Zone2'].volume, type(rec.zones['Zone2'].volume))
 
 def volume_knob():
 
-    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=(60 + rec_volume))
+    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
     print("rotor step starts at: ",  rotor.max_steps)
     rotor.steps = rec_volume
     mute_button = Button(13)
@@ -33,11 +33,13 @@ def volume_knob():
 
         def volume_up():
             steps_turned_up = rotor.steps
+            rec.zones['Zone2'].volume_up()
             print("Turned it up this much: ", steps_turned_up)
 
         def volume_down():
             # softer = (rotor.steps + 180) / 360
             softer = rotor.steps
+            rec.zones['Zone2'].volume_down()
             print("Turned it down this much: ", softer)
 
         def press_mute():
