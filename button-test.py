@@ -43,7 +43,19 @@ def volume_knob():
             print("Turned it down this much: ", softer)
 
         def press_mute():
-            print("Mute Engaged")
+            if rec.zones['Zone2'].muted is True:
+                print("Receiver is muted already!")
+                rec.zones['Zone2'].mute(False)
+                rec.zones['Zone2'].update()
+                print("Turned off mute")
+                print("mute status after turned off mute: ", rec.zones['Zone2'].muted)
+            
+            else:
+                print("muted false, try to unmute")
+                rec.zones['Zone2'].mute(True)
+                rec.zones['Zone2'].update()
+                print("Muting")
+                print("Mute Engaged")
 
         rotor.when_rotated_clockwise = volume_up
 
