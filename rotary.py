@@ -43,25 +43,5 @@ mute_button.when_pressed = mute_receiver
 
 pause()
 
-## while loop works to turn mute on, but not off:
-
-#while True:
-#    if mute_button.when_pressed:
-#        if rec.zones['Zone2'].mute is True:
-#            rec.zones['Zone2'].mute(False)
-#            print("Turning off mute")
-#            rec.async_update()
-#        else:
-#            rec.zones['Zone2'].mute(True)
-#            print("Muting")
-#            rec.async_update()
-#    else:
-#        pass
-
-
-
-#while True:
-#    if mute_button.is_pressed:
-#        print("Button is pressed")
-#    else:
-#        print("Button is not pressed")
+if __name__ == "__main__":
+    mute_receiver()
