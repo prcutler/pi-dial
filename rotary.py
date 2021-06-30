@@ -20,18 +20,6 @@ rec.zones['Zone2'].mute(False)
 rec.zones['Zone2'].update()
 print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
 
-
-def receiver_mute():
-    if rec.zones['Zone2'].muted is False:
-        print("Receiver should NOT be muted")
-        rec.zones['Zone2'].mute(True)
-        print("Turned on mute!")
-        rec.update()
-    else:
-        rec.zones['Zone2'].mute(True)
-        print("Muting")
-        rec.update()
-
 ## This mutes but does not un-mute
 def mute_receiver():
     print("mute status: ", rec.zones['Zone2'].muted)
@@ -68,7 +56,6 @@ pause()
 #            rec.async_update()
 #    else:
 #        pass
-
 
 
 
