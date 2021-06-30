@@ -17,8 +17,9 @@ print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 #print(rec.zones)
 
 rec.zones['Zone2'].mute(False)
-rec.update()
+rec.zones['Zone2'].update()
 print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
+
 
 def receiver_mute():
     if rec.zones['Zone2'].muted is False:
@@ -33,18 +34,23 @@ def receiver_mute():
 
 ## This mutes but does not un-mute
 def mute_receiver():
+    print("mute status: ", rec.zones['Zone2'].muted)
+    
     if rec.zones['Zone2'].muted is True:
         print("Receiver is muted already!")
         rec.zones['Zone2'].mute(False)
-        print("Turned mute off")
-        print("Turning off mute")
-        rec.update()
+        rec.zones['Zone2'].update()
+        print("Turned off mute")
+        print("mute status after turned off mute: ", rec.zones['Zone2'].muted)
+        
     else:
+        print("muted false, try to unmute")
         rec.zones['Zone2'].mute(True)
+        rec.zones['Zone2'].update()
         print("Muting")
-        rec.update()
+     
 
-mute_button.when_pressed = receiver_mute
+mute_button.when_pressed = mute_receiver
 
 pause()
 
