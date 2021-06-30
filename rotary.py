@@ -1,6 +1,7 @@
 import denonavr
 from gpiozero import Button, RotaryEncoder
 from threading import Event
+from signal import pause
 
 # GPIO pints in use
 mute_button = Button(13)
@@ -31,6 +32,8 @@ def mute_receiver():
         rec.update()
 
 mute_button.when_pressed = mute_receiver
+
+pause()
 
 ## while loop works to turn mute on, but not off:
 
