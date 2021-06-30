@@ -1,10 +1,10 @@
-from threading import Event
 import denonavr
-from pigpio_encoder.rotary import Rotary
+from gpiozero import RotaryEncoder, Button
+from signal import pause
 
 # button-test.py will be used to test the pigpio_encoder library and rotary.py uses gpiozero
 
-# Set Denon AVR stats
+# Set Denon AVR stats and connect to AVR Zone 2
 zones = {"Zone2": "Paul Office"}
 rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
@@ -13,42 +13,41 @@ rec.zones['Zone2'].update()
 # At startup, print what input Zone 2 is on and what the volume is currently set to
 print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 
-# At startup, turn mute off on Zone 2
+# At startup, turn mute off on Zone 2 and show current status
 rec.zones['Zone2'].mute(False)
 rec.zones['Zone2'].update()
 print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
-
 print("mute status: ", rec.zones['Zone2'].muted)
 
-def receiver_dial():
 
-    def rotary_callback(counter):
-        print("Counter value: ", counter)
+def rotary_gpiozero_test():
 
-    def sw_short():
-        print("Button pressed")
+    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=180)
+    rotor.steps = -180
+    mute_button = Button(13)
 
-    my_rotary = Rotary(
-        clk_gpio=5,
-        dt_gpio=6,
-        sw_gpio=17
-    )
+    while True:
 
-    my_rotary.setup_rotary(
-        min = 10,
-        max = 300,
-        scale=5,
-        debounce=200,
-        rotary_callback=rotary_callback
-    )
+        def volume_up():
+            steps_turned_up = (rotor.steps + 180) / 360
+            print("Turned it up this much: ", steps_turned_up)
 
-    my_rotary.setup_switch(
-        debounce=200,
-        long_press=False,
-        sw_short_callback=sw_short
-    )
+        def volume_down():
+            softer = (rotor.steps + 180) / 360
+            print("Turned it down this much: ", softer)
 
-    my_rotary.watch()
+        def press_mute():
+            print("Mute Engaged")
+
+        rotor.when_rotated_clockwise = volume_up
+
+        rotor.when_rotated_counter_clockwise = volume_down
+        
+        mute_button.when_pressed = press_mute
+
+        pause()
+
+
 
 def mute_switch():
     while True:
@@ -66,4 +65,4 @@ def mute_switch():
             print("Muting")
 
 if __name__ == "__main__":
-    receiver_dial()
+    rotary_gpiozero_test()
