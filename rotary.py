@@ -18,20 +18,34 @@ print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 rec.zones['Zone2'].mute(False)
 rec.update()
 
-print("Ready")
-
-while True:
-    if mute_button.when_pressed:
-        if rec.zones['Zone2'].mute is True:
-            rec.zones['Zone2'].mute(False)
-            print("Turning off mute")
-            rec.async_update()
-        else:
-            rec.zones['Zone2'].mute(True)
-            print("Muting")
-            rec.async_update()
+def mute_receiver():
+    if rec.zones['Zone2'].mute is True:
+        print("Receiver is muted already!")
+        rec.zones['Zone2'].mute(False)
+        print("Turned mute off")
+        print("Turning off mute")
+        rec.update()
     else:
-        pass
+        rec.zones['Zone2'].mute(True)
+        print("Muting")
+        rec.update()
+
+mute_button.when_pressed = mute_receiver
+
+## while loop works to turn mute on, but not off:
+
+#while True:
+#    if mute_button.when_pressed:
+#        if rec.zones['Zone2'].mute is True:
+#            rec.zones['Zone2'].mute(False)
+#            print("Turning off mute")
+#            rec.async_update()
+#        else:
+#            rec.zones['Zone2'].mute(True)
+#            print("Muting")
+#            rec.async_update()
+#    else:
+#        pass
 
 
 
