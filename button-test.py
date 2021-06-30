@@ -20,7 +20,7 @@ print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
 print("mute status: ", rec.zones['Zone2'].muted)
 
 
-def rotary_gpiozero_test():
+def volume_knob():
 
     rotor = RotaryEncoder(5, 6, wrap=False, max_steps=180)
     rotor.steps = -180
@@ -65,4 +65,4 @@ def mute_switch():
             print("Muting")
 
 if __name__ == "__main__":
-    rotary_gpiozero_test()
+    volume_knob()
