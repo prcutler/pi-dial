@@ -18,6 +18,7 @@ print("Zone 2 Volume: ", rec.zones['Zone2'].volume)
 print("Zone Power: ", rec.zones['Zone2'].power)
 print("Main Zone Input: ", rec.input_func)
 print("Zone 2 Input: ", rec.zones['Zone2'].input_func)
+print("Main Zone Input: ", rec.muted)
 
 
 
@@ -30,3 +31,5 @@ print("Zone 2 Input: ", rec.zones['Zone2'].input_func)
 
 # rec.zones['Zone2']
 # rec.async_update()
+
+
