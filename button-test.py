@@ -15,6 +15,7 @@ print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
 
 # At startup, turn mute off on Zone 2 and show current status
 rec.zones['Zone2'].mute(False)
+rec.zones['Zone2'].set_volume(-40.0)
 rec_volume = float(rec.zones['Zone2'].volume)
 rec.zones['Zone2'].update()
 print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
@@ -23,8 +24,8 @@ print("Volume is: ", rec.zones['Zone2'].volume, type(rec.zones['Zone2'].volume))
 
 def volume_knob():
 
-    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
-    print("rotor step starts at: ",  rotor)
+    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=(60 + rec_volume))
+    print("rotor step starts at: ",  rotor.max_steps)
     rotor.steps = rec_volume
     mute_button = Button(13)
 
