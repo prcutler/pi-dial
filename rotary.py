@@ -12,28 +12,16 @@ rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
 rec.zones["Zone2"].update()
 
-# receiver = rec.zones['Zone2']
+# At startup, print what input Zone 2 is on and what the volume is currently set to
 print(rec.zones["Zone2"].input_func, rec.zones["Zone2"].volume)
 # print(rec.zones)
 
+# At startup, turn mute off on Zone 2
 rec.zones["Zone2"].mute(False)
 rec.zones["Zone2"].update()
 print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
 
-
-def receiver_mute():
-    if rec.zones["Zone2"].muted is False:
-        print("Receiver should NOT be muted")
-        rec.zones["Zone2"].mute(True)
-        print("Turned on mute!")
-        rec.update()
-    else:
-        rec.zones["Zone2"].mute(True)
-        print("Muting")
-        rec.update()
-
-
-## This mutes but does not un-mute
+## Method that when the button is pushed turns mute on if not muted, and if muted, turns mute off.
 def mute_receiver():
     print("mute status: ", rec.zones["Zone2"].muted)
 
@@ -55,24 +43,5 @@ mute_button.when_pressed = mute_receiver
 
 pause()
 
-## while loop works to turn mute on, but not off:
-
-# while True:
-#    if mute_button.when_pressed:
-#        if rec.zones['Zone2'].mute is True:
-#            rec.zones['Zone2'].mute(False)
-#            print("Turning off mute")
-#            rec.async_update()
-#        else:
-#            rec.zones['Zone2'].mute(True)
-#            print("Muting")
-#            rec.async_update()
-#    else:
-#        pass
-
-
-# while True:
-#    if mute_button.is_pressed:
-#        print("Button is pressed")
-#    else:
-#        print("Button is not pressed")
+if __name__ == "__main__":
+    mute_receiver()
