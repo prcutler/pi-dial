@@ -10,45 +10,46 @@ mute_button = Button(13)
 zones = {"Zone2": "Paul Office"}
 rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
-rec.zones['Zone2'].update()
+rec.zones["Zone2"].update()
 
 # receiver = rec.zones['Zone2']
-print(rec.zones['Zone2'].input_func, rec.zones['Zone2'].volume)
-#print(rec.zones)
+print(rec.zones["Zone2"].input_func, rec.zones["Zone2"].volume)
+# print(rec.zones)
 
-rec.zones['Zone2'].mute(False)
-rec.zones['Zone2'].update()
-print("Zone 2 mute status is: ",rec.zones['Zone2'].muted)
+rec.zones["Zone2"].mute(False)
+rec.zones["Zone2"].update()
+print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
 
 
 def receiver_mute():
-    if rec.zones['Zone2'].muted is False:
+    if rec.zones["Zone2"].muted is False:
         print("Receiver should NOT be muted")
-        rec.zones['Zone2'].mute(True)
+        rec.zones["Zone2"].mute(True)
         print("Turned on mute!")
         rec.update()
     else:
-        rec.zones['Zone2'].mute(True)
+        rec.zones["Zone2"].mute(True)
         print("Muting")
         rec.update()
 
+
 ## This mutes but does not un-mute
 def mute_receiver():
-    print("mute status: ", rec.zones['Zone2'].muted)
-    
-    if rec.zones['Zone2'].muted is True:
+    print("mute status: ", rec.zones["Zone2"].muted)
+
+    if rec.zones["Zone2"].muted is True:
         print("Receiver is muted already!")
-        rec.zones['Zone2'].mute(False)
-        rec.zones['Zone2'].update()
+        rec.zones["Zone2"].mute(False)
+        rec.zones["Zone2"].update()
         print("Turned off mute")
-        print("mute status after turned off mute: ", rec.zones['Zone2'].muted)
-        
+        print("mute status after turned off mute: ", rec.zones["Zone2"].muted)
+
     else:
         print("muted false, try to unmute")
-        rec.zones['Zone2'].mute(True)
-        rec.zones['Zone2'].update()
+        rec.zones["Zone2"].mute(True)
+        rec.zones["Zone2"].update()
         print("Muting")
-     
+
 
 mute_button.when_pressed = mute_receiver
 
@@ -56,7 +57,7 @@ pause()
 
 ## while loop works to turn mute on, but not off:
 
-#while True:
+# while True:
 #    if mute_button.when_pressed:
 #        if rec.zones['Zone2'].mute is True:
 #            rec.zones['Zone2'].mute(False)
@@ -70,9 +71,7 @@ pause()
 #        pass
 
 
-
-
-#while True:
+# while True:
 #    if mute_button.is_pressed:
 #        print("Button is pressed")
 #    else:
