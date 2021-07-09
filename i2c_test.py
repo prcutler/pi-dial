@@ -25,6 +25,9 @@ def lcd_display():
 
     while True:
 
+        zone2_volume = rec.zones["Zone2"].volume
+        zone2_input = rec.zones["Zone2"].input_func
+
         def lcd_query():
 
             display_volume = "Volume: " + str(zone2_volume)
