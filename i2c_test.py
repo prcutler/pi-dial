@@ -2,6 +2,7 @@ from RPi_GPIO_i2c_LCD import lcd
 from time import sleep
 import denonavr
 from signal import pause
+from time import sleep
 
 ## Address of backpack
 i2c_address = 0x27
@@ -21,14 +22,18 @@ print(zone2_volume, zone2_input)
 
 
 def lcd_display():
-    display_volume = "Volume: " + str(zone2_volume)
-    display_input = "Input: " + str(zone2_input)
+    def lcd_query():
+        while True:
 
-    ## Set string value to buffer
-    lcdDisplay.set(display_volume, 1)
-    lcdDisplay.set(display_input, 2)
+            display_volume = "Volume: " + str(zone2_volume)
+            display_input = "Input: " + str(zone2_input)
+
+            ## Set string value to buffer
+            lcdDisplay.set(display_volume, 1)
+            lcdDisplay.set(display_input, 2)
 
     sleep(2)
+    pause()
 
 
 if __name__ == "__main__":
