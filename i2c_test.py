@@ -1,10 +1,14 @@
-import RPi_I2C_driver
-from time import *
+from RPi_GPIO_i2c_LCD import lcd
+from time import sleep
 
-mylcd = RPi_I2C_driver.lcd()
+## Address of backpack
+i2c_address = 0x27
 
-# test 2
-mylcd.lcd_display_string("RPi I2C test", 1)
-mylcd.lcd_display_string(" Custom chars", 2)
+## Initalize display
+lcdDisplay = lcd.HD44780(i2c_address)
 
-sleep(2)  # 2 sec delay
+## Set string value to buffer
+lcdDisplay.set("Hello", 1)
+lcdDisplay.set("World", 2)
+
+sleep(1)
