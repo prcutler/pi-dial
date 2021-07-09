@@ -16,6 +16,7 @@ rec.zones["Zone2"].update()
 
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input
+print(zone2_volume, zone2_input)
 
 ## Set string value to buffer
 lcdDisplay.set(zone2_volume, 1)
