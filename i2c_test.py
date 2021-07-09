@@ -28,11 +28,10 @@ def lcd_display():
             display_volume = "Volume: " + str(zone2_volume)
             display_input = "Input: " + str(zone2_input)
 
-            ## Set string value to buffer
+            ## Display on LCD screen:
             lcdDisplay.set(display_volume, 1)
             lcdDisplay.set(display_input, 2)
 
-    sleep(2)
     pause()
 
 
