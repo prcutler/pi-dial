@@ -18,7 +18,7 @@ rec.zones["Zone2"].update()
 
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
-print(zone2_volume, zone2_input)
+# print(zone2_volume, zone2_input)
 
 
 def lcd_display():
@@ -36,9 +36,8 @@ def lcd_display():
 
             print(display_volume, display_input)
 
-        lcd_query()
-
         sleep(5)
+        lcd_query()
 
 
 if __name__ == "__main__":
