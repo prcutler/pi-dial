@@ -92,6 +92,8 @@ def input_switch():
     rotor.steps = int(len(rec.input_func_list))
     print(rotor.steps)
 
+    # TODO Define type of rotor.steps
+
     while True:
 
         def input_up():
