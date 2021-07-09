@@ -85,5 +85,42 @@ def mute_switch():
             print("Muting")
 
 
+def input_switch():
+
+    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
+
+    rotor.steps = rec.input_func_list
+
+    while True:
+
+        def input_up():
+            current_input = rec.input_func
+
+            input_up_steps = rotor.steps
+
+            for input in range(0, len(rec.input_func_list)):
+                if rec.input_func_list[input] == current_input:
+                    rec.input_func_list[input].index += 1
+                    rec.update()
+                    print("Current input is: ", rec.input_func)
+
+        def input_down():
+            current_input = rec.input_func
+
+            input_down_steps = rotor.steps
+
+            for input in range(0, len(rec.input_func_list)):
+                if rec.input_func_list[input] == current_input:
+                    rec.input_func_list[input].index -= 1
+                    rec.update()
+                    print("Current input is: ", rec.input_func)
+
+        rotor.when_rotated_clockwise = input_up
+        rotor.when_rotated_counter_clockwise = input_down
+
+        pause()
+
+
 if __name__ == "__main__":
-    volume_knob()
+    # volume_knob()
+    input_switch()
