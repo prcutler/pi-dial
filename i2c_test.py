@@ -18,8 +18,11 @@ zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
 print(zone2_volume, zone2_input)
 
+display_volume = "Volume: " + str(zone2_volume)
+display_input = "Input: " + str(zone2_input)
+
 ## Set string value to buffer
-lcdDisplay.set("Volume: ", zone2_volume, 1)
-lcdDisplay.set("Input: ", zone2_input, 2)
+lcdDisplay.set(display_volume, 1)
+lcdDisplay.set(display_input, 2)
 
 sleep(1)
