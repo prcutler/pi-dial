@@ -34,9 +34,11 @@ def lcd_display():
             lcdDisplay.set(display_volume, 1)
             lcdDisplay.set(display_input, 2)
 
+            print(display_volume, display_input)
+
         lcd_query()
 
-        pause()
+        sleep(5)
 
 
 if __name__ == "__main__":
