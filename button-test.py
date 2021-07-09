@@ -90,6 +90,7 @@ def input_switch():
     rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
 
     rotor.steps = int(len(rec.input_func_list))
+    print(rotor.steps)
 
     while True:
 
