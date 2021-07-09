@@ -25,6 +25,7 @@ def lcd_display():
 
     while True:
 
+        rec.zones["Zone2"].update()
         zone2_volume = rec.zones["Zone2"].volume
         zone2_input = rec.zones["Zone2"].input_func
 
