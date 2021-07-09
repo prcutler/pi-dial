@@ -38,7 +38,7 @@ def lcd_display():
             lcdDisplay.set(display_volume, 1)
             lcdDisplay.set(display_input, 2)
 
-            print(display_volume, display_input)
+            # print(display_volume, display_input)
 
         sleep(5)
         lcd_query()
