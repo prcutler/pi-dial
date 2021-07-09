@@ -22,8 +22,10 @@ print(zone2_volume, zone2_input)
 
 
 def lcd_display():
-    def lcd_query():
-        while True:
+
+    while True:
+
+        def lcd_query():
 
             display_volume = "Volume: " + str(zone2_volume)
             display_input = "Input: " + str(zone2_input)
@@ -32,7 +34,9 @@ def lcd_display():
             lcdDisplay.set(display_volume, 1)
             lcdDisplay.set(display_input, 2)
 
-    pause()
+        lcd_query()
+
+        pause()
 
 
 if __name__ == "__main__":
