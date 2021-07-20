@@ -89,17 +89,36 @@ def volume_knob():
         def input_down():
             current_input = rec.input_func
             for index in zone2_input_list:
-                current_input_index = zone2_input_list.index(index)
-                new_index = current_input_index - 1
-                print("Index: ", index, "New Index: ", new_index)
-                new_input = zone2_input_list[new_index]
-                rec.zones["Zone2"].set_input_func(new_input)
-                print("New input will be:", new_input)
-                rec.update()
-                print("New input is: ", new_input, zone2_input_list.index(new_input))
-                rec.zones["Zone2"].set_input_func(new_input)
+                if index == current_input:
+                    current_input_index = zone2_input_list.index(index)
+                    new_index = current_input_index - 1
+                    if new_index == 1:
+                        new_index = 11
+                        print("Index: ", index, "New Index: ", new_index)
+                        new_input = zone2_input_list[new_index]
+                        rec.zones["Zone2"].set_input_func(new_input)
+                        print("New input will be:", new_input)
+                        rec.update()
+                        print(
+                            "New input is: ",
+                            new_input,
+                            zone2_input_list.index(new_input),
+                        )
+                        rec.zones["Zone2"].set_input_func(new_input)
+                else:
+                    current_input_index = zone2_input_list.index(index)
+                    new_index = current_input_index - 1
+                    print("Index: ", index, "New Index: ", new_index)
+                    new_input = zone2_input_list[new_index]
+                    rec.zones["Zone2"].set_input_func(new_input)
+                    print("New input will be:", new_input)
+                    rec.update()
+                    print(
+                        "New input is: ", new_input, zone2_input_list.index(new_input)
+                    )
+                    rec.zones["Zone2"].set_input_func(new_input)
 
-                print("Moving input down: ", rec.input_func)
+                    print("Moving input down: ", rec.input_func)
 
             rec.zones["Zone2"].update()
             print("New input is: ", rec.input_func)
