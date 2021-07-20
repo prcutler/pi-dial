@@ -52,7 +52,7 @@ def volume_knob():
     input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=len(rec.input_func_list))
     print("rotor step starts at: ", input_rotor.max_steps)
     input_rotor.steps = len(zone2_input)
-    print(zone2_input, type(zone2_input), zone2_input_list.index())
+    print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
     power_button = Button(21)
 
     while True:
