@@ -37,6 +37,7 @@ rec.zones["Zone2"].update()
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
 zone2_input_list = rec.zones["Zone2"].input_func_list
+print("All inputs: ", zone2_input_list)
 print("Zone 2 INPUT IS: ", zone2_input, type(zone2_input))
 
 
@@ -96,14 +97,15 @@ def volume_knob():
             ):
                 if input_name == current_input:
                     x = rec.input_func_list.index(input_name)
-                    new_input = rec.input_func_list[x + 1]
+                    new_input = rec.input_func_list.index[x + 1]
+                    print("New input is: ", new_input)
                     rec.zones["Zone2"].set_input_func(new_input)
 
                     rec.update()
-                    print("Current input is: ", rec.input_func)
+                    print("Moving input down: ", rec.input_func)
 
             rec.zones["Zone2"].update()
-            print("New input is: ", input_down)
+            print("New input is: ", rec.input_func)
 
         def input_up():
             input_up = input.rotor.steps
