@@ -48,7 +48,7 @@ def volume_knob():
     mute_button = Button(13)
 
     # Rotor #2 is used to change volume and mute on / off
-    input_rotor = RotaryEncoder(19, 26, wrap=False, max_steps=60)
+    input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=len(rec.input_func_list))
     print("rotor step starts at: ", input_rotor.max_steps)
     input_rotor.steps = len(zone2_input)
     print(zone2_input, type(zone2_input))
@@ -84,13 +84,27 @@ def volume_knob():
                 print("Muting")
                 print("Mute Engaged")
 
-        def input_rotor():
-            input_up = input.rotor.steps
-            rec.zones["Zone2"].volume_up()
+        def input_up():
+            current_input = rec.input_func
+            for number, input_name in enumerate(
+                rec.input_func_list, start=current_input
+            ):
+                if input_name == current_input:
+                    # 1 = input_rotor.steps
+                    rec.input_func_list[number].index += 1
+                    rec.update()
+                    print("Current input is: ", rec.input_func)
+
             rec.zones["Zone2"].update()
             print("Turned it up this much: ", input_up)
 
-        input_rotor.when_rotated_clockwise = input_rotor
+        def input_down():
+            input_up = input.rotor.steps
+            rec.zones["Zone2"].volume_up()
+            rec.zones["Zone2"].update()
+            print("Turned it down this much: ", input_down)
+
+        input_rotor.when_rotated_clockwise = input_up
 
         volume_rotor.when_rotated_clockwise = volume_up
 
