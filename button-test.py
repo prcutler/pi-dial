@@ -50,7 +50,8 @@ def volume_knob():
     # Rotor #2 is used to change volume and mute on / off
     input_rotor = RotaryEncoder(19, 26, wrap=False, max_steps=60)
     print("rotor step starts at: ", input_rotor.max_steps)
-    input_rotor.steps = zone2_input
+    input_rotor.steps = zone2_input[0]
+    print(zone2_input[0], type(zone2_input[0]))
     power_button = Button(21)
 
     while True:
