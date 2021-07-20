@@ -12,7 +12,7 @@ rec.update()
 rec.zones["Zone2"].update()
 
 # At startup, print what input Zone 2 is on and what the volume is currently set to
-print(rec.zones["Startup info for Zone2 is "].input_func, rec.zones["Zone2"].volume)
+print("Startup info for Zone2 is ", rec.zones.input_func, rec.zones["Zone2"].volume)
 
 # At startup, turn mute off on Zone 2 and show current status
 rec.zones["Zone2"].mute(False)
