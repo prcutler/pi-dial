@@ -86,8 +86,12 @@ def volume_knob():
 
         def input_up():
             current_input = rec.input_func
+            for index in rec.input_func_list:
+                if current_input == index:
+                    current_input_index = rec.input_func_list.index(index)
+
             for number, input_name in enumerate(
-                rec.input_func_list, start=current_input
+                rec.input_func_list, start=current_input_index
             ):
                 if input_name == current_input:
                     # 1 = input_rotor.steps
