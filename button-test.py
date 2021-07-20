@@ -25,6 +25,17 @@ print("Current input is: ", rec.input)
 print("Volume is: ", rec.zones["Zone2"].volume, type(rec.zones["Zone2"].volume))
 
 
+# Set Denon AVR stats
+zones = {"Zone2": "Paul Office"}
+rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
+rec.update()
+rec.zones["Zone2"].update()
+
+zone2_volume = rec.zones["Zone2"].volume
+zone2_input = rec.zones["Zone2"].input_func
+print("Zone 2 INPUT IS: ", zone2_input)
+
+
 def volume_knob():
 
     # Rotor #1 is used to change volume and mute on / off
