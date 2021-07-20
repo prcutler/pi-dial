@@ -25,7 +25,6 @@ rec_volume = float(rec.zones["Zone2"].volume)
 rec_input = rec.zones["Zone2"].input_func
 rec.zones["Zone2"].update()
 print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
-print("Current input is: ", rec.input)
 print("Volume is: ", rec.zones["Zone2"].volume, type(rec.zones["Zone2"].volume))
 
 
@@ -37,7 +36,8 @@ rec.zones["Zone2"].update()
 
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
-print("Zone 2 INPUT IS: ", zone2_input)
+rec.zones["Zone2"].input_func = zone2_input
+print("Zone 2 INPUT IS: ", zone2_input, type(zone2_input))
 
 
 def volume_knob():
