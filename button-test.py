@@ -1,6 +1,7 @@
-import denonavr
-from gpiozero import RotaryEncoder, Button
 from signal import pause
+
+import denonavr
+from gpiozero import Button, RotaryEncoder
 
 # button-test.py will be used to test the pigpio_encoder library and rotary.py uses gpiozero
 
@@ -17,30 +18,38 @@ print(rec.zones["Zone2"].input_func, rec.zones["Zone2"].volume)
 rec.zones["Zone2"].mute(False)
 rec.zones["Zone2"].set_volume(-40.0)
 rec_volume = float(rec.zones["Zone2"].volume)
+rec_input = ["Zone2"].input_func
 rec.zones["Zone2"].update()
 print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
-print("mute status: ", rec.zones["Zone2"].muted)
+print("Current input is: ", rec.input)
 print("Volume is: ", rec.zones["Zone2"].volume, type(rec.zones["Zone2"].volume))
 
 
 def volume_knob():
 
-    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
-    print("rotor step starts at: ", rotor.max_steps)
-    rotor.steps = rec_volume
+    # Rotor #1 is used to change volume and mute on / off
+    volume_rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
+    print("rotor step starts at: ", volume_rotor.max_steps)
+    volume_rotor.steps = rec_volume
     mute_button = Button(13)
+
+    # Rotor #2 is used to change volume and mute on / off
+    input_rotor = RotaryEncoder(19, 26, wrap=False, max_steps=60)
+    print("rotor step starts at: ", input_rotor.max_steps)
+    input_rotor.steps = rec_input
+    power_button = Button(21)
 
     while True:
 
         def volume_up():
-            louder_steps = rotor.steps
+            louder_steps = volume_rotor.steps
             rec.zones["Zone2"].volume_up()
             rec.zones["Zone2"].update()
             print("Turned it up this much: ", louder_steps)
 
         def volume_down():
             # softer = (rotor.steps + 180) / 360
-            softer_steps = rotor.steps
+            softer_steps = volume_rotor.steps
             rec.zones["Zone2"].volume_down()
             rec.zones["Zone2"].update()
             print("Turned it down this much: ", softer_steps)
@@ -60,9 +69,17 @@ def volume_knob():
                 print("Muting")
                 print("Mute Engaged")
 
-        rotor.when_rotated_clockwise = volume_up
+            def input_rotor():
+                input_up = input.rotor.steps
+                rec.zones["Zone2"].volume_up()
+                rec.zones["Zone2"].update()
+                print("Turned it up this much: ", input_up)
 
-        rotor.when_rotated_counter_clockwise = volume_down
+        input_rotor.when_rotated_clockwise = input_rotor
+
+        volume_rotor.when_rotated_clockwise = volume_up
+
+        volume_rotor.when_rotated_counter_clockwise = volume_down
 
         mute_button.when_pressed = press_mute
 
@@ -125,5 +142,5 @@ def input_switch():
 
 
 if __name__ == "__main__":
-    # volume_knob()
-    input_switch()
+    volume_knob()
+    # input_switch()
