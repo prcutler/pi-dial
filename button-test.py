@@ -97,8 +97,11 @@ def volume_knob():
             ):
                 if input_name == current_input:
                     x = rec.input_func_list.index(input_name)
-                    new_input = rec.input_func_list.index[x + 1]
-                    print("New input is: ", new_input)
+                    x -= 1
+                    new_input = rec.input_func_list.index[x]
+                    print(
+                        "New input is: ", new_input, zone2_input_list.index(new_input)
+                    )
                     rec.zones["Zone2"].set_input_func(new_input)
 
                     rec.update()
