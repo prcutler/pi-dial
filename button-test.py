@@ -36,6 +36,7 @@ rec.zones["Zone2"].update()
 
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
+zone2_input_list = rec.zones["Zone2"].input_func_list
 print("Zone 2 INPUT IS: ", zone2_input, type(zone2_input))
 
 
@@ -51,7 +52,7 @@ def volume_knob():
     input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=len(rec.input_func_list))
     print("rotor step starts at: ", input_rotor.max_steps)
     input_rotor.steps = len(zone2_input)
-    print(zone2_input, type(zone2_input))
+    print(zone2_input, type(zone2_input), zone2_input_list.index())
     power_button = Button(21)
 
     while True:
