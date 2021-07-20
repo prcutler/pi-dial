@@ -156,7 +156,7 @@ def input_switch():
 
             for input in range(0, len(rec.input_func_list)):
                 if rec.input_func_list[input] == current_input:
-                    rec.input_func_list[input].index += 1
+                    rec.input_func_list[input].index -= 1
                     rec.update()
                     print("Current input is: ", zone2_input)
 
@@ -167,7 +167,7 @@ def input_switch():
 
             for input in range(0, len(rec.input_func_list)):
                 if rec.input_func_list[input] == current_input:
-                    rec.input_func_list[input].index -= 1
+                    rec.input_func_list[input].index += 1
                     rec.update()
                     print("Current input is: ", rec.input_func)
 
