@@ -18,7 +18,7 @@ print(rec.zones["Zone2"].input_func, rec.zones["Zone2"].volume)
 rec.zones["Zone2"].mute(False)
 rec.zones["Zone2"].set_volume(-40.0)
 rec_volume = float(rec.zones["Zone2"].volume)
-rec_input = ["Zone2"].input_func
+rec_input = rec.zones["Zone2"].input_func
 rec.zones["Zone2"].update()
 print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
 print("Current input is: ", rec.input)
