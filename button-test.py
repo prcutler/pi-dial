@@ -95,8 +95,10 @@ def volume_knob():
                 rec.input_func_list, start=current_input_index
             ):
                 if input_name == current_input:
-                    # 1 = input_rotor.steps
-                    rec.input_func_list[number].index += 1
+                    x = rec.input_func_list.index(input_name)
+                    new_input = rec.input_func_list[x + 1]
+                    rec.zones["Zone2"].set_input_func(new_input)
+
                     rec.update()
                     print("Current input is: ", rec.input_func)
 
