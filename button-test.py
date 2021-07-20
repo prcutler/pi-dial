@@ -85,7 +85,7 @@ def volume_knob():
                 print("Muting")
                 print("Mute Engaged")
 
-        def input_up():
+        def input_down():
             current_input = rec.input_func
             for index in rec.input_func_list:
                 if current_input == index:
@@ -103,15 +103,15 @@ def volume_knob():
                     print("Current input is: ", rec.input_func)
 
             rec.zones["Zone2"].update()
-            print("Turned it up this much: ", input_up)
+            print("New input is: ", input_down)
 
-        def input_down():
+        def input_up():
             input_up = input.rotor.steps
             rec.zones["Zone2"].volume_up()
             rec.zones["Zone2"].update()
-            print("Turned it down this much: ", input_down)
+            print("New input is: ", input_down)
 
-        input_rotor.when_rotated_clockwise = input_up
+        input_rotor.when_rotated_clockwise = input_down
 
         volume_rotor.when_rotated_clockwise = volume_up
 
@@ -158,7 +158,7 @@ def input_switch():
                 if rec.input_func_list[input] == current_input:
                     rec.input_func_list[input].index += 1
                     rec.update()
-                    print("Current input is: ", rec.input_func)
+                    print("Current input is: ", zone2_input)
 
         def input_down():
             current_input = rec.input_func
