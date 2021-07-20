@@ -28,6 +28,7 @@ def lcd_display():
         rec.zones["Zone2"].update()
         zone2_volume = rec.zones["Zone2"].volume
         zone2_input = rec.zones["Zone2"].input_func
+        print("Zone2: volume ", zone2_volume, "Input: ", zone2_input)
 
         def lcd_query():
 
