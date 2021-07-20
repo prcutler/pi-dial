@@ -88,23 +88,20 @@ def volume_knob():
 
         def input_down():
             current_input = rec.input_func
-            for index in rec.input_func_list:
+            for index in zone2_input_list:
                 if current_input == index:
-                    current_input_index = rec.input_func_list.index(index)
-
-            for number, input_name in enumerate(
-                rec.input_func_list, start=current_input_index
-            ):
-                if input_name == current_input:
-                    x = rec.input_func_list.index(input_name)
-                    x -= 1
-                    new_input = rec.input_func_list.index[x]
+                    current_input_index = zone2_input_list.index(index)
+                    new_index = current_input_index - 1
+                    print("Index: ", index, "New Index: ", new_index)
+                    new_input = zone2_input_list[new_index]
+                    rec.zones["Zone2"].set_input_func(new_input)
+                    print("New input will be:", new_input)
+                    rec.update()
                     print(
                         "New input is: ", new_input, zone2_input_list.index(new_input)
                     )
                     rec.zones["Zone2"].set_input_func(new_input)
 
-                    rec.update()
                     print("Moving input down: ", rec.input_func)
 
             rec.zones["Zone2"].update()
