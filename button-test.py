@@ -27,13 +27,7 @@ rec.zones["Zone2"].update()
 print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
 print("Volume is: ", rec.zones["Zone2"].volume, type(rec.zones["Zone2"].volume))
 
-
-# Set Denon AVR stats
-zones = {"Zone2": "Paul Office"}
-rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
-rec.update()
-rec.zones["Zone2"].update()
-
+# Zone 2 information
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
 zone2_input_list = rec.zones["Zone2"].input_func_list
@@ -49,8 +43,8 @@ def volume_knob():
     volume_rotor.steps = rec_volume
     mute_button = Button(13)
 
-    # Rotor #2 is used to change volume and mute on / off
-    input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=len(rec.input_func_list))
+    # Rotor #2 is  used to change input source
+    input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=12)
     print("rotor step starts at: ", input_rotor.max_steps)
     input_rotor.steps = len(zone2_input)
     print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
@@ -88,36 +82,29 @@ def volume_knob():
 
         def input_down():
             current_input = rec.input_func
-            for index in zone2_input_list:
-                if index == current_input:
-                    current_input_index = zone2_input_list.index(index)
-                    new_index = current_input_index - 1
-                    if new_index == 1:
-                        new_index = 11
-                        print("Index: ", index, "New Index: ", new_index)
-                        new_input = zone2_input_list[new_index]
-                        rec.zones["Zone2"].set_input_func(new_input)
-                        print("New input will be:", new_input)
-                        rec.update()
-                        print(
-                            "New input is: ",
-                            new_input,
-                            zone2_input_list.index(new_input),
-                        )
-                        rec.zones["Zone2"].set_input_func(new_input)
-                else:
-                    current_input_index = zone2_input_list.index(index)
-                    new_index = current_input_index - 1
-                    print("Index: ", index, "New Index: ", new_index)
-                    new_input = zone2_input_list[new_index]
-                    rec.zones["Zone2"].set_input_func(new_input)
-                    print("New input will be:", new_input)
-                    rec.update()
-                    print(
-                        "New input is: ", new_input, zone2_input_list.index(new_input)
-                    )
-                    rec.zones["Zone2"].set_input_func(new_input)
 
+            for index, input in enumerate(zone2_input_list):
+                if current_input == input:
+                    new_index = index - 1
+                    new_index_name = zone2_input_list[new_index]
+                    rec.zones["Zone2"].set_input_func = zone2_input_list[new_index_name]
+
+                    # rec.zones["Zone2"].set_input_func(new_input)
+                    rec.zones["Zone2"].update()
+
+                else:
+                    # current_input_index = zone2_input_list.index(index)
+                    new_index = index - 1
+                    print("Index: ", index, "New Index: ", new_index)
+                    new_index_name = zone2_input_list[new_index]
+                    print("New input will be:", new_index_name)
+                    rec.zones["Zone2"].set_input_func = zone2_input_list[new_index_name]
+                    rec.zones["Zone2"].update()
+                    print(
+                        "New input is: ",
+                        zone2_input_list[new_index_name],
+                        zone2_input_list.index(new_index),
+                    )
                     print("Moving input down: ", rec.input_func)
 
             rec.zones["Zone2"].update()
