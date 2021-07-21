@@ -85,7 +85,7 @@ def volume_knob():
             print("Current input is: ", current_input)
 
             for index, input in enumerate(zone2_input_list):
-                print(index, input)
+                print(index, input)git 
                 if current_input == input:
                     print("Start the if statement")
                     new_index = index - 1
