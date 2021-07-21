@@ -99,13 +99,10 @@ def volume_knob():
                     input,
                     type(input),
                 )
-                #                if current_input == input:
-                #                    print("Start the if statement")
-                #                    new_index = index - 1
 
-                if input is current_input:
+                if current_input is input:
 
-                    if index > 0:
+                    if index < 1:
                         print(
                             "Start the top if statement",
                             "Type of rec input",
@@ -114,9 +111,22 @@ def volume_knob():
                             type(input),
                         )
 
-                        new_index = zone2_input_list[index]
+                        new_index = 12
+                        print("The new input will be: ", zone2_input_list[new_index])
+                        new_index_name = zone2_input_list[new_index]
+                        rec.zones["Zone2"].set_input_func(new_index_name)
+                        print(
+                            "If statement in first if statement executed.  New input is:",
+                            new_index_name,
+                            "New index is:",
+                            new_index,
+                        )
+                        rec.zones["Zone2"].update()
+
+                    else:
                         new_index = index - 1
-                        rec.zones["Zone2"].set_input_func = zone2_input_list[new_index]
+                        new_index_name = zone2_input_list[new_index]
+                        rec.zones["Zone2"].set_input_func(new_index_name)
                         rec.zones["Zone2"].update()
                         print(
                             "If statement executed.  New input is: ",
@@ -126,47 +136,40 @@ def volume_knob():
                         )
                         rec.zones["Zone2"].update()
 
-                    else:
-                        new_index = 12
-                        new_index_name = zone2_input_list[new_index]
-                        rec.zones["Zone2"].set_input_func = zone2_input_list[:-0]
-                        print(
-                            "Else statement in first if statement executed.  New input is:",
-                            new_index_name,
-                            "New index is:",
-                            new_index,
-                        )
-                        rec.zones["Zone2"].update()
-
                 else:
-                    if index < 0:
+                    if index < 1:
+                        print(
+                            "Start the top if statement",
+                            "Type of rec input",
+                            type(current_input),
+                            "Type of input: ",
+                            type(input),
+                        )
 
                         new_index = 12
                         new_index_name = zone2_input_list[new_index]
-                        rec.zones["Zone2"].set_input_func = zone2_input_list[:-0]
+                        rec.zones["Zone2"].set_input_func(new_index_name)
                         print(
-                            "If statement in top Else statement executed.  New input is:",
+                            "If statement in first if statement executed.  New input is:",
                             new_index_name,
                             "New index is:",
                             new_index,
                         )
                         rec.zones["Zone2"].update()
 
-                    else:
-
-                        print("Start the  last else statement")
-                        new_index = zone2_input_list[index]
-                        new_index = index - 1
-                        rec.zones["Zone2"].set_input_func = zone2_input_list[new_index]
-                        rec.zones["Zone2"].update()
-                        print(
-                            "Else statement in last Else statement executed.  New input is: ",
-                            rec.zones["Zone2"].input_func,
-                            "New index is: ",
-                            new_index,
-                        )
-                        rec.zones["Zone2"].update()
-
+            else:
+                print("Start the  last else statement")
+                new_index = index - 1
+                new_index_name = zone2_input_list[new_index]
+                print("index name :", new_index_name)
+                rec.zones["Zone2"].set_input_func(new_index_name)
+                rec.zones["Zone2"].update()
+                print(
+                    "If statement executed.  New input is: ",
+                    rec.zones["Zone2"].input_func,
+                    "New index is: ",
+                    new_index,
+                )
                 rec.zones["Zone2"].update()
 
             rec.zones["Zone2"].update()
