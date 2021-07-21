@@ -81,11 +81,11 @@ def volume_knob():
                 print("Mute Engaged")
 
         def input_down():
-            current_input = rec.input_func
+            current_input = rec.zones["Zone2"].input_func
             print("Current input is: ", current_input)
 
             for index, input in enumerate(zone2_input_list):
-                print(index, input)git 
+                print(index, input)
                 if current_input == input:
                     print("Start the if statement")
                     new_index = index - 1
