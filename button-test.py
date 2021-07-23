@@ -176,7 +176,7 @@ def volume_knob():
         input_up = input.rotor.steps
         rec.zones["Zone2"].volume_up()
         rec.zones["Zone2"].update()
-        print("New input is: ", input_down)
+        print("New input is: ", input_up)
 
     def mute_switch():
         while True:
