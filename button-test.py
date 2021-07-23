@@ -35,165 +35,34 @@ print("All inputs: ", zone2_input_list)
 print("Zone 2 INPUT IS: ", zone2_input, type(zone2_input))
 
 
+# Connect to the Rotary Encoders connected to the Raspberry PI
+# Rotary Encoder 1
+volume_rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
+volume_rotor.steps = rec_volume
+mute_button = Button(13)
+# Rotary Encoder 2
+input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=12)
+print("rotor step starts at: ", input_rotor.max_steps)
+input_rotor.steps = len(zone2_input)
+print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
+power_button = Button(21)
+
+
 def volume_knob():
+    def volume_up():
+        louder_steps = volume_rotor.steps
+        rec.zones["Zone2"].volume_up()
+        rec.zones["Zone2"].update()
+        print("Turned it up this much: ", louder_steps)
 
-    # Rotor #1 is used to change volume and mute on / off
-    volume_rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
-    print("rotor step starts at: ", volume_rotor.max_steps)
-    volume_rotor.steps = rec_volume
-    mute_button = Button(13)
+    def volume_down():
+        # softer = (rotor.steps + 180) / 360
+        softer_steps = volume_rotor.steps
+        rec.zones["Zone2"].volume_down()
+        rec.zones["Zone2"].update()
+        print("Turned it down this much: ", softer_steps)
 
-    # Rotor #2 is  used to change input source
-    input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=12)
-    print("rotor step starts at: ", input_rotor.max_steps)
-    input_rotor.steps = len(zone2_input)
-    print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
-    power_button = Button(21)
-
-    while True:
-
-        def volume_up():
-            louder_steps = volume_rotor.steps
-            rec.zones["Zone2"].volume_up()
-            rec.zones["Zone2"].update()
-            print("Turned it up this much: ", louder_steps)
-
-        def volume_down():
-            # softer = (rotor.steps + 180) / 360
-            softer_steps = volume_rotor.steps
-            rec.zones["Zone2"].volume_down()
-            rec.zones["Zone2"].update()
-            print("Turned it down this much: ", softer_steps)
-
-        def press_mute():
-            if rec.zones["Zone2"].muted is True:
-                print("Receiver is muted already!")
-                rec.zones["Zone2"].mute(False)
-                rec.zones["Zone2"].update()
-                print("Turned off mute")
-                print("mute status after turned off mute: ", rec.zones["Zone2"].muted)
-
-            else:
-                print("muted false, try to unmute")
-                rec.zones["Zone2"].mute(True)
-                rec.zones["Zone2"].update()
-                print("Muting")
-                print("Mute Engaged")
-
-        def input_down():
-            current_input = rec.zones["Zone2"].input_func
-            print("Current input is: ", current_input, "Type :", type(current_input))
-
-            for index, input in enumerate(zone2_input_list):
-                print(index, input)
-                print(
-                    index,
-                    input,
-                    "Current Input: ",
-                    current_input,
-                    type(current_input),
-                    "index :",
-                    index,
-                    type(index),
-                    "Input in for loop:",
-                    input,
-                    type(input),
-                )
-
-                if current_input is input:
-
-                    if index < 1:
-                        print(
-                            "Start the top if statement",
-                            "Type of rec input",
-                            type(current_input),
-                            "Type of input: ",
-                            type(input),
-                        )
-
-                        new_index = 12
-                        print("The new input will be: ", zone2_input_list[new_index])
-                        new_index_name = zone2_input_list[new_index]
-                        rec.zones["Zone2"].set_input_func(new_index_name)
-                        print(
-                            "If statement in first if statement executed.  New input is:",
-                            new_index_name,
-                            "New index is:",
-                            new_index,
-                        )
-                        rec.zones["Zone2"].update()
-
-                    else:
-                        new_index = index - 1
-                        new_index_name = zone2_input_list[new_index]
-                        rec.zones["Zone2"].set_input_func(new_index_name)
-                        rec.zones["Zone2"].update()
-                        print(
-                            "If statement in first else statement executed.  New input is: ",
-                            rec.zones["Zone2"].input_func,
-                            "New index is: ",
-                            new_index,
-                        )
-                        rec.zones["Zone2"].update()
-
-                else:
-                    if index < 1:
-                        print(
-                            "Start the major else statement",
-                            "Type of rec input",
-                            type(current_input),
-                            "Type of input: ",
-                            type(input),
-                        )
-
-                        new_index = 12
-                        new_index_name = zone2_input_list[new_index]
-                        rec.zones["Zone2"].set_input_func(new_index_name)
-                        print(
-                            "Last Else statement in fmajor else statement executed.  New input is:",
-                            new_index_name,
-                            "New index is:",
-                            new_index,
-                        )
-                        rec.zones["Zone2"].update()
-
-                    else:
-                        print("Start the  last else statement")
-                        new_index = index - 1
-                        new_index_name = zone2_input_list[new_index]
-                        print("index name :", new_index_name)
-                        rec.zones["Zone2"].set_input_func(new_index_name)
-                        rec.zones["Zone2"].update()
-                        print(
-                            "Very last Else statement executed.  New input is: ",
-                            rec.zones["Zone2"].input_func,
-                            "New index is: ",
-                            new_index,
-                        )
-                        rec.zones["Zone2"].update()
-
-            rec.zones["Zone2"].update()
-            print("The receiver final input is: ", rec.zones["Zone2"].input_func)
-
-        def input_up():
-            input_up = input.rotor.steps
-            rec.zones["Zone2"].volume_up()
-            rec.zones["Zone2"].update()
-            print("New input is: ", input_down)
-
-        input_rotor.when_rotated_clockwise = input_down
-
-        volume_rotor.when_rotated_clockwise = volume_up
-
-        volume_rotor.when_rotated_counter_clockwise = volume_down
-
-        mute_button.when_pressed = press_mute
-
-        pause()
-
-
-def mute_switch():
-    while True:
+    def press_mute():
         if rec.zones["Zone2"].muted is True:
             print("Receiver is muted already!")
             rec.zones["Zone2"].mute(False)
@@ -206,43 +75,171 @@ def mute_switch():
             rec.zones["Zone2"].mute(True)
             rec.zones["Zone2"].update()
             print("Muting")
+            print("Mute Engaged")
 
+    def input_down():
+        current_input = rec.zones["Zone2"].input_func
+        print("Current input is: ", current_input, "Type :", type(current_input))
 
-def input_switch():
+        for index, input in enumerate(zone2_input_list):
+            print(index, input)
+            print(
+                index,
+                input,
+                "Current Input: ",
+                current_input,
+                type(current_input),
+                "index :",
+                index,
+                type(index),
+                "Input in for loop:",
+                input,
+                type(input),
+            )
 
-    rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
+            if current_input is input:
 
-    rotor.steps = int(len(rec.input_func_list))
-    print(rotor.steps)
+                if index < 1:
+                    print(
+                        "Start the top if statement",
+                        "Type of rec input",
+                        type(current_input),
+                        "Type of input: ",
+                        type(input),
+                    )
 
-    # TODO Define type of rotor.steps
+                    new_index = 12
+                    print("The new input will be: ", zone2_input_list[new_index])
+                    new_index_name = zone2_input_list[new_index]
+                    rec.zones["Zone2"].set_input_func(new_index_name)
+                    print(
+                        "If statement in first if statement executed.  New input is:",
+                        new_index_name,
+                        "New index is:",
+                        new_index,
+                    )
+                    rec.zones["Zone2"].update()
+
+                else:
+                    new_index = index - 1
+                    new_index_name = zone2_input_list[new_index]
+                    rec.zones["Zone2"].set_input_func(new_index_name)
+                    rec.zones["Zone2"].update()
+                    print(
+                        "If statement in first else statement executed.  New input is: ",
+                        rec.zones["Zone2"].input_func,
+                        "New index is: ",
+                        new_index,
+                    )
+                    rec.zones["Zone2"].update()
+
+            else:
+                if index < 1:
+                    print(
+                        "Start the major else statement",
+                        "Type of rec input",
+                        type(current_input),
+                        "Type of input: ",
+                        type(input),
+                    )
+
+                    new_index = 12
+                    new_index_name = zone2_input_list[new_index]
+                    rec.zones["Zone2"].set_input_func(new_index_name)
+                    print(
+                        "Last Else statement in fmajor else statement executed.  New input is:",
+                        new_index_name,
+                        "New index is:",
+                        new_index,
+                    )
+                    rec.zones["Zone2"].update()
+
+                else:
+                    print("Start the  last else statement")
+                    new_index = index - 1
+                    new_index_name = zone2_input_list[new_index]
+                    print("index name :", new_index_name)
+                    rec.zones["Zone2"].set_input_func(new_index_name)
+                    rec.zones["Zone2"].update()
+                    print(
+                        "Very last Else statement executed.  New input is: ",
+                        rec.zones["Zone2"].input_func,
+                        "New index is: ",
+                        new_index,
+                    )
+                    rec.zones["Zone2"].update()
+
+        rec.zones["Zone2"].update()
+        print("The receiver final input is: ", rec.zones["Zone2"].input_func)
+
+    def input_up():
+        input_up = input.rotor.steps
+        rec.zones["Zone2"].volume_up()
+        rec.zones["Zone2"].update()
+        print("New input is: ", input_down)
+
+    def mute_switch():
+        while True:
+            if rec.zones["Zone2"].muted is True:
+                print("Receiver is muted already!")
+                rec.zones["Zone2"].mute(False)
+                rec.zones["Zone2"].update()
+                print("Turned off mute")
+                print("mute status after turned off mute: ", rec.zones["Zone2"].muted)
+
+            else:
+                print("muted false, try to unmute")
+                rec.zones["Zone2"].mute(True)
+                rec.zones["Zone2"].update()
+                print("Muting")
+
+    def input_switch():
+
+        rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
+
+        rotor.steps = int(len(rec.input_func_list))
+        print(rotor.steps)
+
+        # TODO Define type of rotor.steps
+
+        while True:
+
+            def input_up():
+                current_input = rec.input_func
+
+                input_up_steps = rotor.steps
+
+                for input in range(0, len(rec.input_func_list)):
+                    if rec.input_func_list[input] == current_input:
+                        rec.input_func_list[input].index -= 1
+                        rec.update()
+                        print("Current input is: ", zone2_input)
+
+            def input_down():
+                current_input = rec.input_func
+
+                input_down_steps = rotor.steps
+
+                for input in range(0, len(rec.input_func_list)):
+                    if rec.input_func_list[input] == current_input:
+                        rec.input_func_list[input].index += 1
+                        rec.update()
+                        print("Current input is: ", rec.input_func)
+
+            rotor.when_rotated_clockwise = input_up
+            rotor.when_rotated_counter_clockwise = input_down
+
+            pause()
 
     while True:
 
-        def input_up():
-            current_input = rec.input_func
+        input_rotor.when_rotated_clockwise = input_down
 
-            input_up_steps = rotor.steps
+        volume_rotor.when_rotated_clockwise = volume_up
 
-            for input in range(0, len(rec.input_func_list)):
-                if rec.input_func_list[input] == current_input:
-                    rec.input_func_list[input].index -= 1
-                    rec.update()
-                    print("Current input is: ", zone2_input)
+        volume_rotor.when_rotated_counter_clockwise = volume_down
 
-        def input_down():
-            current_input = rec.input_func
-
-            input_down_steps = rotor.steps
-
-            for input in range(0, len(rec.input_func_list)):
-                if rec.input_func_list[input] == current_input:
-                    rec.input_func_list[input].index += 1
-                    rec.update()
-                    print("Current input is: ", rec.input_func)
-
-        rotor.when_rotated_clockwise = input_up
-        rotor.when_rotated_counter_clockwise = input_down
+        mute_button.when_pressed = press_mute
 
         pause()
 
