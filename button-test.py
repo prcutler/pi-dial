@@ -97,6 +97,7 @@ def volume_knob():
             )
 
             if current_input is input:
+                print("Input matches")
 
                 if index < 1:
                     print(
