@@ -12,13 +12,13 @@ def encoder_test():
 
         turn_clockwise = input_rotor.steps
         print(turn_clockwise)
-        input_rotor.steps = input_rotor.steps
+        # input_rotor.steps = input_rotor.steps
         print("Turned clockwise this much: ", turn_clockwise)
 
     def counter_clockwise():
         turn_counter = input_rotor.steps
         print(turn_counter)
-        input_rotor.steps = input_rotor.steps
+        # input_rotor.steps = input_rotor.steps
         print("Turned counter clockwise this much: ", turn_counter)
 
     while True:
