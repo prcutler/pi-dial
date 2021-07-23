@@ -101,7 +101,7 @@ def volume_knob():
 
                 if index < 1:
                     print(
-                        "Start the top if statement",
+                        "Start the top if statement for input < 1",
                         "Type of rec input",
                         type(current_input),
                         "Type of input: ",
