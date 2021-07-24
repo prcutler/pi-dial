@@ -1,9 +1,12 @@
 from signal import pause
-
+from time import sleep
 import denonavr
 from gpiozero import Button, RotaryEncoder
 
 # button-test.py will be used to test the pigpio_encoder library and rotary.py uses gpiozero
+
+# list of inputs on the receiver that need to be skipped  (8k and bluetooth)
+bad_input_list = [0, 3, 7]
 
 # Set Denon AVR stats and connect to AVR Zone 2
 zones = {"Zone2": "Paul Office"}
@@ -32,7 +35,7 @@ zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
 zone2_input_list = rec.zones["Zone2"].input_func_list
 print("All inputs: ", zone2_input_list)
-print("Zone 2 INPUT IS: ", zone2_input, type(zone2_input))
+print("Zone 2 INPUT IS: ", zone2_input)
 
 
 # Connect to the Rotary Encoders connected to the Raspberry PI
@@ -76,107 +79,44 @@ def volume_knob():
             print("Muting")
             print("Mute Engaged")
 
-    def input_down():
+    def input_change(inp_dir):
         current_input = rec.zones["Zone2"].input_func
-        print("Current input is: ", current_input, "Type :", type(current_input))
+        curr_pos = zone2_input_list.index(current_input)
 
-        for index, input in enumerate(zone2_input_list):
-            print(index, input)
-            print(
-                index,
-                input,
-                "Current Input: ",
-                current_input,
-                type(current_input),
-                "index :",
-                index,
-                type(index),
-                "Input in for loop:",
-                input,
-                type(input),
-            )
-
-            if current_input is input:
-                print("Input matches")
-
-                if index < 1:
-                    print(
-                        "Start the top if statement for input < 1",
-                        "Type of rec input",
-                        type(current_input),
-                        "Type of input: ",
-                        type(input),
-                    )
-
-                    new_index = 12
-                    print("The new input will be: ", zone2_input_list[new_index])
-                    new_index_name = zone2_input_list[new_index]
-                    rec.zones["Zone2"].set_input_func(new_index_name)
-                    print(
-                        "If statement in first if statement executed.  New input is:",
-                        new_index_name,
-                        "New index is:",
-                        new_index,
-                    )
-                    rec.zones["Zone2"].update()
-
-                else:
-                    new_index = index - 1
-                    new_index_name = zone2_input_list[new_index]
-                    rec.zones["Zone2"].set_input_func(new_index_name)
-                    rec.zones["Zone2"].update()
-                    print(
-                        "If statement in first else statement executed.  New input is: ",
-                        rec.zones["Zone2"].input_func,
-                        "New index is: ",
-                        new_index,
-                    )
-                    rec.zones["Zone2"].update()
-
+        if inp_dir == 1:
+            if curr_pos == 12:
+                new_index = 0
             else:
-                if index < 1:
-                    print(
-                        "Start the major else statement",
-                        "Type of rec input",
-                        type(current_input),
-                        "Type of input: ",
-                        type(input),
-                    )
+                new_index = curr_pos + 1
 
+            while new_index in bad_input_list:
+                new_index += 1
+                if new_index >= 13:
+                    new_index = 0
+        else:
+            if curr_pos == 0:
+                new_index = 12
+            else:
+                new_index = curr_pos - 1
+
+            # take care of the spots where it gets stuck, possibly due to non-existent receiver inputs
+            while new_index in bad_input_list:
+                new_index -= 1
+                if new_index <= 0:
                     new_index = 12
-                    new_index_name = zone2_input_list[new_index]
-                    rec.zones["Zone2"].set_input_func(new_index_name)
-                    print(
-                        "Last Else statement in fmajor else statement executed.  New input is:",
-                        new_index_name,
-                        "New index is:",
-                        new_index,
-                    )
-                    rec.zones["Zone2"].update()
 
-                else:
-                    print("Start the  last else statement")
-                    new_index = index - 1
-                    new_index_name = zone2_input_list[new_index]
-                    print("index name :", new_index_name)
-                    rec.zones["Zone2"].set_input_func(new_index_name)
-                    rec.zones["Zone2"].update()
-                    print(
-                        "Very last Else statement executed.  New input is: ",
-                        rec.zones["Zone2"].input_func,
-                        "New index is: ",
-                        new_index,
-                    )
-                    rec.zones["Zone2"].update()
-
+        new_index_name = zone2_input_list[new_index]
+        rec.zones["Zone2"].set_input_func(new_index_name)
+        rec.zones["Zone2"].update()
+        sleep(3)
         rec.zones["Zone2"].update()
         print("The receiver final input is: ", rec.zones["Zone2"].input_func)
 
+    def input_down():
+        input_change(0)
+
     def input_up():
-        input_up = input.rotor.steps
-        rec.zones["Zone2"].volume_up()
-        rec.zones["Zone2"].update()
-        print("New input is: ", input_up)
+        input_change(1)
 
     def mute_switch():
         while True:
@@ -233,7 +173,8 @@ def volume_knob():
 
     while True:
 
-        input_rotor.when_rotated_clockwise = input_down
+        input_rotor.when_rotated_clockwise = input_up
+        input_rotor.when_rotated_counter_clockwise = input_down
 
         volume_rotor.when_rotated_clockwise = volume_up
 
