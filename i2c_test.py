@@ -1,8 +1,8 @@
-from RPi_GPIO_i2c_LCD import lcd
-from time import sleep
-import denonavr
 from signal import pause
 from time import sleep
+
+import denonavr
+from RPi_GPIO_i2c_LCD import lcd
 
 ## Address of backpack
 i2c_address = 0x27
