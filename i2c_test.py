@@ -21,25 +21,22 @@ zone2_input = rec.zones["Zone2"].input_func
 # print(zone2_volume, zone2_input)
 
 
+def lcd_query():
+    # Text to display on the LCD
+    display_volume = "Volume: " + str(zone2_volume)
+    display_input = "Input: " + str(zone2_input)
+
+    ## Order text appears on the LCD:
+    lcdDisplay.set(display_volume, 1)
+    lcdDisplay.set(display_input, 2)
+
+
 def lcd_display():
 
     while True:
 
         rec.zones["Zone2"].update()
-        zone2_volume = rec.zones["Zone2"].volume
-        zone2_input = rec.zones["Zone2"].input_func
         print("Zone2: volume ", zone2_volume, "Input: ", zone2_input)
-
-        def lcd_query():
-
-            display_volume = "Volume: " + str(zone2_volume)
-            display_input = "Input: " + str(zone2_input)
-
-            ## Display on LCD screen:
-            lcdDisplay.set(display_volume, 1)
-            lcdDisplay.set(display_input, 2)
-
-            # print(display_volume, display_input)
 
         sleep(5)
         lcd_query()
