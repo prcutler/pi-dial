@@ -1,7 +1,7 @@
 anyio==3.3.2
 asyncstdlib==3.10.1
 attrs==21.2.0
-certifi==2021.5.30
+certifi==2021.10.8
 colorzero==2.0
 defusedxml==0.7.1
 denonavr==0.10.9
