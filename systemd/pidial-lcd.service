@@ -8,8 +8,8 @@ Type=simple
 Restart=always
 RestartSec=1
 User=prcutler
-ExecStartPre=source /workspace/pi-dial/env/bin/activate
-ExecStart=python3 /workspace/pi-dial/pidial-lcd.py
+ExecStartPre=
+ExecStart=/workspace/pi-dial/.venv/bin/python3 /workspace/pi-dial/pidial-lcd.py
 ExecStartPost
 ExecStop=
 ExecReload=
