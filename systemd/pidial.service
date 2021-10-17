@@ -1,0 +1,18 @@
+[Unit]
+Description=PiDial Service 
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=prcutler
+ExecStartPre=source /workspace/pi-dial/env/bin/activate
+ExecStart=python3 /workspace/pi-dial/pi-dial.py
+ExecStartPost
+ExecStop=
+ExecReload=
+
+[Install]
+WantedBy=multi-user.target
