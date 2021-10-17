@@ -8,8 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=prcutler
-ExecStartPre=source /workspace/pi-dial/env/bin/activate
-ExecStart=python3 /workspace/pi-dial/pi-dial.py
+ExecStart=/workspace/pi-dial/.venv/bin/python3 /workspace/pi-dial.py
 ExecStartPost
 ExecStop=
 ExecReload=
