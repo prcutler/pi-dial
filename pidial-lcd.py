@@ -28,6 +28,7 @@ def lcd_query():
 
     display_volume = "Volume: " + str(zone2_volume)
     display_input = "Input: " + str(zone2_input)
+    print("Zone2: volume ", zone2_volume, "Input: ", zone2_input)
 
     ## Order text appears on the LCD:
     lcdDisplay.set(display_volume, 1)
@@ -39,7 +40,6 @@ def lcd_display():
     while True:
 
         rec.zones["Zone2"].update()
-        print("Zone2: volume ", zone2_volume, "Input: ", zone2_input)
 
         sleep(5)
         lcd_query()
