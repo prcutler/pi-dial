@@ -7,7 +7,7 @@ from RPLCD.i2c import CharLCD
 i2c_address = 0x27
 
 ## Initalize display
-lcd = CharLCD('PCF8574', 0x27)
+lcd = CharLCD("PCF8574", 0x27)
 
 # Connect to the Denon receiver
 zones = {"Zone2": "Paul Office"}
@@ -24,14 +24,25 @@ def lcd_query():
     zone2_volume = rec.zones["Zone2"].volume
     zone2_input = rec.zones["Zone2"].input_func
 
-    display_volume = "Volume: " + str(zone2_volume)
-    display_input = "Input: " + str(zone2_input)
+    if rec.zones["Zone2"].mute == True:
+        display_volume = "Mute Engaged"
+        display_input = "Input: " + str(zone2_input)
 
-    ## Write to the LCD (first clear it), write line one, line break, write line two
-    lcd.clear()
-    lcd.write_string(display_input)
-    lcd.crlf()
-    lcd.write_string(display_volume)
+        # Display Mute and Input on LCD
+        lcd.clear()
+        lcd.write_string(display_input)
+        lcd.crlf()
+        lcd.write_string(display_volume)
+
+    else:
+        display_volume = "Volume: " + str(zone2_volume)
+        display_input = "Input: " + str(zone2_input)
+
+        ## Write to the LCD (first clear it), write line one, line break, write line two
+        lcd.clear()
+        lcd.write_string(display_input)
+        lcd.crlf()
+        lcd.write_string(display_volume)
 
 
 def lcd_display():
