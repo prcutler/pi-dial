@@ -1,5 +1,5 @@
 [Unit]
-Description=PiDial Service 
+Description=PiDial Service
 After=network.target
 StartLimitIntervalSec=0
 
@@ -8,8 +8,8 @@ Type=simple
 Restart=always
 RestartSec=1
 User=prcutler
-ExecStart=source /home/prcutler/workspace/pi-dial/.venv/bin/activate && python3 /home/prcutler/workspace/pi-dial/pidial-lcd.py
-ExecStartPost
+ExecStart=/home/prcutler/workspace/pi-dial/.venv/bin/python /home/prcutler/workspace/pi-dial/pidial.py
+ExecStartPost=
 ExecStop=
 ExecReload=
 
