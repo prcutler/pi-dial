@@ -23,8 +23,9 @@ def lcd_query():
     # Get the current volume and input
     zone2_volume = rec.zones["Zone2"].volume
     zone2_input = rec.zones["Zone2"].input_func
+    zone2_mute = rec.zones["Zone2"].muted
 
-    if rec.zones["Zone2"].mute == True:
+    if zone2_mute == True:
         display_volume = "Mute Engaged"
         display_input = "Input: " + str(zone2_input)
 
