@@ -16,14 +16,15 @@ rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
 rec.zones["Zone2"].update()
 
-zone2_volume = rec.zones["Zone2"].volume
-zone2_input = rec.zones["Zone2"].input_func
 # print(zone2_volume, zone2_input)
 
 
 def lcd_query():
     # Text to display on the LCD
     rec.zones["Zone2"].update()
+
+    zone2_volume = rec.zones["Zone2"].volume
+    zone2_input = rec.zones["Zone2"].input_func
 
     display_volume = "Volume: " + str(zone2_volume)
     display_input = "Input: " + str(zone2_input)
