@@ -3,11 +3,18 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
 # Pi-Dial
-A collection of Python programs and tools to connect hardware to a Raspberry Pi that controls a Denon AVR (Audio / Visual Receiver)
+Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to control a Denon audio-visual receiver (AVR).  You will also need 16x2 LCD display and two rotary encoders.
 
 ## Features
 * Control the volume of Zone 2 using a rotary encoder
 * Change the input source of Zone 2 using a rotary encoder
-* Add an LCD display that shows the current input and volume for Zone 2
+* Mute the receiver by pushing the volume rotary encoder
+* Use the LCD display to show the current input, volume, and mute status
+* `systemd` service files included to start the programs at boot
+* 3D Printer STLs included (unfortunately, the CAD file has been lost)
+
+## Details
+To be continued
+
   
 
