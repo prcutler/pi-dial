@@ -1,4 +1,4 @@
-anyio==3.3.3
+anyio==3.3.4
 asyncstdlib==3.10.1
 attrs==21.2.0
 backports.entry-points-selectable==1.1.0
