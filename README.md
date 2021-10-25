@@ -5,7 +5,7 @@
 ![pi-dial in enclosure](/img/pidial.png)
 
 # Pi-Dial
-Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to control Zone 2 of a Denon audio-visual receiver (AVR).  You will also need 16x2 LCD display and two rotary encoders.
+Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to control Zone 2 of a Denon audio-visual receiver (AVR).  You will also need 16x2 LCD display and two rotary encoders.  Grogu not included.
 
 ## Features
 * Control the volume of Zone 2 using a rotary encoder
@@ -27,10 +27,11 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 
 ## Installation
 
-Install Raspbian on your Raspberry Pi. Any Raspberry Pi should work, I am using an older Raspberry Pi with ethernet.  A newer
+Install Raspbian on your Raspberry Pi. Any Raspberry Pi should work, I am using an older Raspberry Pi 2 with ethernet.                                                                                                                                                 
 
 
 ## Credits
-
-  
+* Originally inspired by the [Media Dial](https://learn.adafruit.com/media-dial/circuit-diagram) project on Adafruit by the Ruiz brothers
+* The [denonavr project](https://github.com/ol-iver/denonavr) originally created for Home Assistant
+* Way too many tutorials and guides on how to program rotary encoders and the LCD screen.  A special shout out to Adafruit for all of their project ideas and documentation.
 
