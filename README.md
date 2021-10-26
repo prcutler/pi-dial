@@ -10,7 +10,7 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 ## Features
 * Control the volume of Zone 2 using a rotary encoder
 * Change the input source of Zone 2 using a rotary encoder
-* Mute the receiver by pushing the volume rotary encoder
+* Mute the receiver by pushing the button on the volume rotary encoder
 * Use the LCD display to show the current input, volume, and mute status
 * `systemd` service files included to start the programs at boot
 * 3D Printer STLs included (unfortunately, the CAD file has been lost)
@@ -36,8 +36,8 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 7. Install the Python 3 packages using `pip3 install -r requirements.txt`.
 8.  Update both `pidial.py` and `pidial_lcd.py` to use the GPIO pins  and I2C address you noted in step 1.
 9. Update the both files with the correct IP address of your Denon receiver.
-10. Edit both `systemd` files with the directory location of your Python virtual environment and the two `pi-dial` programs. (You can directly call the Python interpreter from the virtual environment and it will use that virtual environment without having to activate it.)
-10. Copy the systemd service files to /etc/systemd/system/ (You will need to use `sudo`.)
+10. Edit both `systemd` files with the directory location of your Python virtual environment and the two `pi-dial` programs. (You can directly call the Python interpreter from the virtual environment and it will use that virtual environment without having to activate it.)  Also edit the user to match your system.
+10. Copy the systemd service files to `/etc/systemd/system/` (You will need to use `sudo`.)
 11. Start the programs using `systemctl start pidial.service` and `systemctl start pidial_lcd.service`.  You will want to [enable the `systemd` service every time you turn your Pi on](https://www.linode.com/docs/guides/start-service-at-boot/).
 
 ## Notes
@@ -49,7 +49,9 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 * If you want to see some atrocious Python code, you can see my brainstorming code in the `playground` directory.  I don't recommend it.
 
 ## TODO
-* The code using the `denonavr` library needs to be refactored to use Python's `async`. More information is available at the `denonavr` repository.
+* The code using the `denonavr` library needs to be refactored to use Python's `async`. More information [is available at the `denonavr` repository](https://github.com/ol-iver/denonavr)).
+* The code needs tests.  Shame on me.
+* I'm sure the code could be more Pythonic.  I'm still learning.
 
 ## Credits
 * Originally inspired by the [Media Dial](https://learn.adafruit.com/media-dial/circuit-diagram) project on Adafruit by the Ruiz brothers
@@ -57,4 +59,5 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 * Way too many tutorials and guides on how to program rotary encoders and the LCD screen.  A special shout out to Adafruit for all of their project ideas and documentation.
 * The [RPLCD](https://github.com/dbrgn/RPLCD) library, which is used to interface with the LCD screen.  This library was a last minute addition replacing a different library I was having issues with. 
 * My best friend who wishes to remain nameless for designing the CAD files for the enclosure.
+* Last, but not least, my wonderful wife, who fixed the list problem mentioned in the Notes above.
 
