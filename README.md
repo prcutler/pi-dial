@@ -52,6 +52,7 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 * The code using the `denonavr` library needs to be refactored to use Python's `async`. More information [is available at the `denonavr` repository](https://github.com/ol-iver/denonavr)).
 * The code needs tests.  Shame on me.
 * I'm sure the code could be more Pythonic.  I'm still learning.
+* Write a method to center the text on each line of the LCD display.
 
 ## Credits
 * Originally inspired by the [Media Dial](https://learn.adafruit.com/media-dial/circuit-diagram) project on Adafruit by the Ruiz brothers
@@ -61,3 +62,16 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 * My best friend who wishes to remain nameless for designing the CAD files for the enclosure.
 * Last, but not least, my wonderful wife, who fixed the list problem mentioned in the Notes above.
 
+## How to contribute
+
+Imposter syndrome disclaimer: I want your help. No really, I do.  I'm a hobbyist with a lot to learn about Python.
+
+There might be a little voice inside that tells you you're not ready; that you need to do one more tutorial, or learn another framework, or write a few more blog posts before you can help me with this project.
+
+I assure you, that's not the case.
+
+And you don't just have to write code. You can help out by writing documentation, tests, or even by giving feedback about this work. (And yes, that includes giving feedback about the contribution guidelines.)
+
+Thank you for contributing!
+
+Questions?  Bugs?  Feel free to file an issue and let me know!  Thanks!
