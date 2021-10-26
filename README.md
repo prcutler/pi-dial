@@ -5,7 +5,7 @@
 ![pi-dial in enclosure](/img/pidial.png)
 
 # Pi-Dial
-Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to control Zone 2 of a Denon audio-visual receiver (AVR).  You will also need 16x2 LCD display and two rotary encoders.  Grogu not included.  For more information I [blogged my progress](https://paulcutler.org/tags/pi-dial/) over 2021 creating `pi-dial`.
+Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to control Zone 2 of a Denon audio-visual receiver (AVR).  You will also need 16x2 LCD display and two rotary encoders.  Grogu not included.  For more information you can read my series  [of blog posts ](https://paulcutler.org/tags/pi-dial/) over 2021 creating `pi-dial`.
 
 ## Features
 * Control the volume of Zone 2 using a rotary encoder
