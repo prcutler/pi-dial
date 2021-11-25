@@ -1,5 +1,6 @@
 from signal import pause
 from time import sleep
+import time
 import denonavr
 from RPLCD.i2c import CharLCD
 
@@ -15,6 +16,32 @@ rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
 rec.zones["Zone2"].update()
 
+# Mute Display
+framebuffer = [
+    "",
+    "",
+]
+
+
+def write_muted(lcd, framebuffer, num_cols):
+    """Write the framebuffer out to the specified LCD."""
+    lcd.home()
+    for row in framebuffer:
+        lcd.write_string(row.ljust(num_cols)[:num_cols])
+        lcd.write_string("\r\n")
+
+    write_muted(lcd, framebuffer, 16)
+
+
+def mute_string(string, lcd, framebuffer, row, num_cols, delay=0.2):
+    padding = " " * num_cols
+    s = padding + string + padding
+    for i in range(len(s) - num_cols + 1):
+        framebuffer[row] = s[i : i + num_cols]
+        write_muted(lcd, framebuffer, num_cols)
+        time.sleep(delay)
+
+
 # Method to display input and volume on LCD
 def lcd_query():
     # Poll the receiver
@@ -26,14 +53,7 @@ def lcd_query():
     zone2_mute = rec.zones["Zone2"].muted
 
     if zone2_mute == True:
-        display_volume = "Mute Engaged"
-        display_input = "Input: " + str(zone2_input)
-
-        # Display Mute and Input on LCD
-        lcd.clear()
-        lcd.write_string(display_input)
-        lcd.crlf()
-        lcd.write_string(display_volume)
+        mute_string
 
     else:
         display_volume = "Volume: " + str(zone2_volume)
@@ -53,9 +73,7 @@ def lcd_display():
         zone2_mute = rec.zones["Zone2"].muted
 
         if zone2_mute == True:
-            lcd.clear()
-            sleep(1)
-            lcd_query()
+            mute_string()
 
         else:
             lcd_query()
