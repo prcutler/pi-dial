@@ -55,6 +55,7 @@ def lcd_display():
         zone2_mute = rec.zones["Zone2"].muted
 
         if zone2_mute == True:
+            lcd.clear()
             mute_loop(mute_string, lcd, framebuffer, 1, 16)
 
         else:
