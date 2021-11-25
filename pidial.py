@@ -14,11 +14,9 @@ rec.update()
 rec.zones["Zone2"].update()
 
 # At startup, print what input Zone 2 is on and what the volume is currently set to
-print(
-    "Startup info for Zone2 is ",
-    rec.zones["Zone2"].input_func,
-    rec.zones["Zone2"].volume,
-)
+# print("Startup info for Zone2 is ",
+rec.zones["Zone2"].input_func
+rec.zones["Zone2"].volume
 
 # At startup, turn mute off on Zone 2 and show current status
 rec.zones["Zone2"].mute(False)
@@ -26,16 +24,15 @@ rec.zones["Zone2"].set_volume(-40.0)
 rec_volume = float(rec.zones["Zone2"].volume)
 rec_input = rec.zones["Zone2"].input_func
 rec.zones["Zone2"].update()
-print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
-print("Volume is: ", rec.zones["Zone2"].volume, type(rec.zones["Zone2"].volume))
+# print("Zone 2 mute status is: ", rec.zones["Zone2"].muted)
+# print("Volume is: ", rec.zones["Zone2"].volume, type(rec.zones["Zone2"].volume))
 
 # Zone 2 information
 zone2_volume = rec.zones["Zone2"].volume
 zone2_input = rec.zones["Zone2"].input_func
 zone2_input_list = rec.zones["Zone2"].input_func_list
-print("All inputs: ", zone2_input_list)
-print("Zone 2 INPUT IS: ", zone2_input)
-
+# print("All inputs: ", zone2_input_list)
+# print("Zone 2 INPUT IS: ", zone2_input)
 
 # Connect to the Rotary Encoders connected to the Raspberry PI
 # Rotary Encoder 1
@@ -44,10 +41,13 @@ volume_rotor.steps = rec_volume
 mute_button = Button(13)
 # Rotary Encoder 2
 input_rotor = RotaryEncoder(26, 19, wrap=True, max_steps=24)
-print("rotor step starts at: ", input_rotor.max_steps)
+# print("rotor step starts at: ", input_rotor.max_steps)
 input_rotor.steps = len(zone2_input_list)
-print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
-power_button = Button(21)
+# print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
+
+# See README for how you can make the power button work automagically
+# See also: https://embeddedpi.com/documentation/gpio/mypi-industrial-raspberry-pi-psu-shutdown-gpio-line
+# power_button = Button(21)
 
 
 def pi_dial():
@@ -55,28 +55,28 @@ def pi_dial():
         louder_steps = volume_rotor.steps
         rec.zones["Zone2"].volume_up()
         rec.zones["Zone2"].update()
-        print("Turned it up this much: ", louder_steps)
+        # print("Turned it up this much: ", louder_steps)
 
     def volume_down():
         softer_steps = volume_rotor.steps
         rec.zones["Zone2"].volume_down()
         rec.zones["Zone2"].update()
-        print("Turned it down this much: ", softer_steps)
+        # print("Turned it down this much: ", softer_steps)
 
     def press_mute():
         if rec.zones["Zone2"].muted is True:
-            print("Receiver is muted already!")
+            # print("Receiver is muted already!")
             rec.zones["Zone2"].mute(False)
             rec.zones["Zone2"].update()
-            print("Turned off mute")
-            print("mute status after turned off mute: ", rec.zones["Zone2"].muted)
+            # print("Turned off mute")
+            # print("mute status after turned off mute: ", rec.zones["Zone2"].muted)
 
         else:
-            print("muted false, try to unmute")
+            # print("muted false, try to unmute")
             rec.zones["Zone2"].mute(True)
             rec.zones["Zone2"].update()
-            print("Muting")
-            print("Mute Engaged")
+            # print("Muting")
+            # print("Mute Engaged")
 
     def input_change(inp_dir):
         current_input = rec.zones["Zone2"].input_func
@@ -109,7 +109,7 @@ def pi_dial():
         rec.zones["Zone2"].update()
         sleep(3)
         rec.zones["Zone2"].update()
-        print("The receiver final input is: ", rec.zones["Zone2"].input_func)
+        # print("The receiver final input is: ", rec.zones["Zone2"].input_func)
 
     def input_down():
         input_change(0)
