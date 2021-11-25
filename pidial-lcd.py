@@ -14,6 +14,10 @@ zones = {"Zone2": "Paul Office"}
 rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.update()
 rec.zones["Zone2"].update()
+# Get the current volume and input
+zone2_volume = rec.zones["Zone2"].volume
+zone2_input = rec.zones["Zone2"].input_func
+zone2_mute = rec.zones["Zone2"].muted
 
 # Mute Display
 framebuffer = [
@@ -44,30 +48,6 @@ def mute_loop(string, lcd, framebuffer, row, num_cols, delay=0.2):
         time.sleep(delay)
 
 
-# Method to display input and volume on LCD
-def lcd_query():
-    # Poll the receiver
-    rec.zones["Zone2"].update()
-
-    # Get the current volume and input
-    zone2_volume = rec.zones["Zone2"].volume
-    zone2_input = rec.zones["Zone2"].input_func
-    zone2_mute = rec.zones["Zone2"].muted
-
-    if zone2_mute == True:
-        mute_string
-
-    else:
-        display_volume = "Volume: " + str(zone2_volume)
-        display_input = "Input: " + str(zone2_input)
-
-        ## Write to the LCD (first clear it), write line one, line break, write line two
-        lcd.clear()
-        lcd.write_string(display_input)
-        lcd.crlf()
-        lcd.write_string(display_volume)
-
-
 def lcd_display():
 
     while True:
@@ -75,11 +55,18 @@ def lcd_display():
         zone2_mute = rec.zones["Zone2"].muted
 
         if zone2_mute == True:
-            mute_string(mute_string, lcd, framebuffer, 1, 16)
+            mute_loop(mute_string, lcd, framebuffer, 1, 16)
 
         else:
-            lcd_query()
-            sleep(3)
+            display_volume = "Volume: " + str(zone2_volume)
+            display_input = "Input: " + str(zone2_input)
+
+        ## Write to the LCD (first clear it), write line one, line break, write line two
+        lcd.clear()
+        lcd.write_string(display_input)
+        lcd.crlf()
+        lcd.write_string(display_volume)
+        sleep(3)
 
 
 if __name__ == "__main__":
