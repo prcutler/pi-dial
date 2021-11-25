@@ -53,6 +53,7 @@ def lcd_display():
         zone2_mute = rec.zones["Zone2"].muted
 
         if zone2_mute == True:
+            lcd.clear()
             sleep(0.1)
             lcd_query()
 
