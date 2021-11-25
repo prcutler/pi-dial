@@ -1,4 +1,3 @@
-from signal import pause
 from time import sleep
 import time
 import denonavr
@@ -18,7 +17,7 @@ rec.zones["Zone2"].update()
 
 # Mute Display
 framebuffer = [
-    "",
+    "Test Line 1",
     "",
 ]
 
