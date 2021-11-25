@@ -59,7 +59,7 @@ def lcd_display():
 
         else:
             lcd_query()
-            sleep(0.5)
+            sleep(3)
 
 
 if __name__ == "__main__":
