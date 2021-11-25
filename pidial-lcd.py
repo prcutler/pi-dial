@@ -29,10 +29,13 @@ def write_muted(lcd, framebuffer, num_cols):
         lcd.write_string(row.ljust(num_cols)[:num_cols])
         lcd.write_string("\r\n")
 
-    write_muted(lcd, framebuffer, 16)
+
+write_muted(lcd, framebuffer, 16)
+
+mute_string = "Mute Engaged"
 
 
-def mute_string(string, lcd, framebuffer, row, num_cols, delay=0.2):
+def mute_loop(string, lcd, framebuffer, row, num_cols, delay=0.2):
     padding = " " * num_cols
     s = padding + string + padding
     for i in range(len(s) - num_cols + 1):
@@ -72,7 +75,7 @@ def lcd_display():
         zone2_mute = rec.zones["Zone2"].muted
 
         if zone2_mute == True:
-            mute_string()
+            mute_string(mute_string, lcd, framebuffer, 1, 16)
 
         else:
             lcd_query()
