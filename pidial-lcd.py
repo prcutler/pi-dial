@@ -54,7 +54,7 @@ def lcd_display():
 
         if zone2_mute == True:
             lcd.clear()
-            sleep(0.1)
+            sleep(1)
             lcd_query()
 
         else:
