@@ -52,6 +52,7 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 
 ## TODO
 * The code using the `denonavr` library needs to be refactored to use Python's `async`. More information [is available at the `denonavr` repository](https://github.com/ol-iver/denonavr)).
+* Using `async` will also add the abilty to automatically turn off mute after a set amount of time.
 * The code needs tests.  Shame on me.
 * I'm sure the code could be more Pythonic.  I'm still learning.
 * Write a method to center the text on each line of the LCD display.
