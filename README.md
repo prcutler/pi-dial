@@ -10,7 +10,7 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 ## Features
 * Control the volume of Zone 2 using a rotary encoder
 * Change the input source of Zone 2 using a rotary encoder
-* Mute the receiver by pushing the button on the volume rotary encoder
+* Mute the receiver by pushing the button on the volume rotary encoder and mute will scroll on the screen.  (Hopefully it will catch my eye and remind me to turn it off so I don't wear out the needle on my turntable.)
 * Use the LCD display to show the current input, volume, and mute status
 * `systemd` service files included to start the programs at boot
 * 3D Printer STLs included (unfortunately, the CAD file has been lost)
