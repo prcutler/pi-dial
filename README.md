@@ -25,6 +25,8 @@ Pi-Dial consists of two Python programs that can be used with a Raspberry Pi to 
 * Python 3 (Built using 3.9)
 * systemd (optional)
 
+![pi-dial muited](/img/mute480.gif)
+
 ## Installation
 
 1. Connect the LCD display and rotary encoders to the Raspberry Pi.  Make a note of which GPIO pins you connect each one to.  Enable the [I2C interface on the Raspberry Pi ](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) if needed and note its address.
