@@ -48,25 +48,44 @@ def lcd_display():
 
 #    mute_loop(mute_string, lcd, framebuffer, 0, 16)
 
-    while True:
-
+    def muted_state():
         rec.zones["Zone2"].update()
 
         if rec.zones["Zone2"].muted is True:
             lcd.clear()
             print("Muting")
             mute_loop(mute_string, lcd, framebuffer, 1, 16)
-            
+
         else:
+            pass
+
+    def not_muted():
+
+        rec.zones["Zone2"].update()
+
+        if rec.zones["Zone2"].muted is False:
+            
+            lcd.clear()
             display_volume = "Volume: " + str(zone2_volume)
             display_input = "Input: " + str(zone2_input)
 
-            ## Write to the LCD (first clear it), write line one, line break, write line two
-            lcd.clear()
-            lcd.write_string(display_input)
-            lcd.crlf()
-            lcd.write_string(display_volume)
-            sleep(3)
+        else:
+            pass
+
+        ## Write to the LCD (first clear it), write line one, line break, write line two
+        lcd.clear()
+        lcd.write_string(display_input)
+        lcd.crlf()
+        lcd.write_string(display_volume)
+        sleep(3)
+            
+
+    while True:
+        sleep(3)
+        muted_state()
+        not_muted()
+
+
 
 
 
