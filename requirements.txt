@@ -8,7 +8,7 @@ charset-normalizer==2.0.9
 colorzero==2.0
 defusedxml==0.7.1
 denonavr==0.10.9
-distlib==0.3.3
+distlib==0.3.4
 filelock==3.4.0
 gpiozero==1.6.2
 h11==0.12.0
