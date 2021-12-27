@@ -9,7 +9,7 @@ colorzero==2.0
 defusedxml==0.7.1
 denonavr==0.10.9
 distlib==0.3.4
-filelock==3.4.0
+filelock==3.4.2
 gpiozero==1.6.2
 h11==0.12.0
 httpcore==0.14.3
