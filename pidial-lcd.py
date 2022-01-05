@@ -76,7 +76,7 @@ def lcd_display():
         sleep(1)
 
     while True:
-        sleep(3)
+        sleep(0.5)
         muted_state()
         not_muted()
 
