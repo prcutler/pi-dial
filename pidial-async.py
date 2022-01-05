@@ -1,5 +1,6 @@
 import asyncio
-from typing import list
+
+# from typing import list
 from time import sleep
 import time
 import denonavr
