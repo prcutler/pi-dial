@@ -54,7 +54,7 @@ def main():
     avr_status = loop.create_task(setup_avr())
 
     all_tasks = [vol_up, vol_down, mute, change_input, avr_status]
-    loop.run_until_complete(all_tasks)
+    loop.run_forever(all_tasks)
 
     loop = asyncio.get_event_loop()
 
@@ -70,10 +70,12 @@ async def setup_avr():
 
 
 async def volume_up():
+    await volume_rotor.when_rotated_clockwise
     await rec.volume_up
 
 
 async def volume_down():
+    await volume_rotor.when_rotated_counter_clockwise
     await rec.volume_down
 
 
