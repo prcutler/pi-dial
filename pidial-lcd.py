@@ -22,6 +22,7 @@ framebuffer = [
     "",
 ]
 
+
 def lcd_display():
     def write_muted(lcd, framebuffer, num_cols):
         """Write the framebuffer out to the specified LCD."""
@@ -59,7 +60,7 @@ def lcd_display():
         zone2_input = rec.zones["Zone2"].input_func
 
         if rec.zones["Zone2"].muted is False:
-            
+
             lcd.clear()
             display_volume = "Volume: " + str(rec.zones["Zone2"].volume)
             display_input = "Input: " + str(zone2_input)
@@ -73,15 +74,11 @@ def lcd_display():
         lcd.crlf()
         lcd.write_string(display_volume)
         sleep(1)
-            
 
     while True:
         sleep(3)
         muted_state()
         not_muted()
-
-
-
 
 
 if __name__ == "__main__":
