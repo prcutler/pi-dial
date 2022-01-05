@@ -5,7 +5,7 @@ from gpiozero import Button, RotaryEncoder
 
 
 # List of inputs on the receiver that need to be skipped  (8k and bluetooth)
-bad_input_list = [0, 3, 7]
+bad_input_list = [0, 2, 4]
 
 # Set Denon AVR stats and connect to AVR Zone 2
 zones = {"Zone2": "Paul Office"}
