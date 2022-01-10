@@ -14,7 +14,7 @@ gpiozero==1.6.2
 h11==0.12.0
 httpcore==0.14.4
 httpx==0.21.3
-identify==2.4.1
+identify==2.4.2
 idna==3.2
 importlib-metadata==4.10.0
 netifaces==0.11.0
