@@ -11,7 +11,7 @@ denonavr==0.10.9
 distlib==0.3.4
 filelock==3.4.2
 gpiozero==1.6.2
-h11==0.12.0
+h11==0.13.0
 httpcore==0.14.4
 httpx==0.21.3
 identify==2.4.4
