@@ -32,5 +32,5 @@ smbus==1.1.post2
 sniffio==1.2.0
 toml==0.10.2
 typing-extensions==4.0.1
-virtualenv==20.13.0
+virtualenv==20.13.1
 zipp==3.7.0
