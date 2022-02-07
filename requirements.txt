@@ -12,7 +12,7 @@ distlib==0.3.4
 filelock==3.4.2
 gpiozero==1.6.2
 h11==0.13.0
-httpcore==0.14.5
+httpcore==0.14.7
 httpx==0.22.0
 identify==2.4.6
 idna==3.2
