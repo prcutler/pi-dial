@@ -4,7 +4,7 @@ attrs==21.4.0
 backports.entry-points-selectable==1.1.1
 certifi==2021.10.8
 cfgv==3.3.1
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
 colorzero==2.0
 defusedxml==0.7.1
 denonavr==0.10.10
