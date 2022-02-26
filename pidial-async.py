@@ -9,10 +9,10 @@ from signal import pause
 from gpiozero import Button, RotaryEncoder
 
 
-## Address of backpack
+# Address of backpack
 i2c_address = 0x27
 
-## Initalize display
+# Initialize display
 lcd = CharLCD("PCF8574", 0x27)
 
 # Connect to the Denon receiver
