@@ -1,10 +1,7 @@
 import asyncio
 
 # from typing import list
-from time import sleep
-import time
 import denonavr
-from signal import pause
 from gpiozero import Button, RotaryEncoder
 
 
@@ -25,8 +22,9 @@ zone2_input_list = rec.zones["Zone2"].input_func_list
 volume_rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
 volume_rotor.steps = rec_volume
 mute_button = Button(13)
+
 # Rotary Encoder 2
-input_rotor = RotaryEncoder(26, 19, wrap=True, max_steps=24)
+input_rotor = RotaryEncoder(19, 26, wrap=True, max_steps=24)
 # print("rotor step starts at: ", input_rotor.max_steps)
 input_rotor.steps = len(zone2_input_list)
 # print(zone2_input, type(zone2_input), zone2_input_list.index(zone2_input))
@@ -34,25 +32,6 @@ input_rotor.steps = len(zone2_input_list)
 # See README for how you can make the power button work automagically
 # See also: https://embeddedpi.com/documentation/gpio/mypi-industrial-raspberry-pi-psu-shutdown-gpio-line
 # power_button = Button(21)
-
-
-def main():
-
-    loop = asyncio.get_event_loop()
-
-    vol_up = loop.create_task(volume_up())
-    vol_down = loop.create_task(volume_down())
-    mute = loop.create_task(press_mute())
-    change_input = loop.create_task(input_change())
-
-    avr_status = loop.create_task(setup_avr())
-
-    all_tasks = [vol_up, vol_down, mute, change_input, avr_status]
-    loop.run_forever(all_tasks)
-
-    loop = asyncio.get_event_loop()
-
-    #  loop.run()
 
 
 async def setup_avr():
@@ -94,3 +73,25 @@ async def input_down():
 
 async def input_up():
     pass
+
+
+async def main():
+
+    loop = asyncio.get_event_loop()
+
+    vol_up = loop.create_task(volume_up())
+    vol_down = loop.create_task(volume_down())
+    mute = loop.create_task(press_mute())
+    change_input = loop.create_task(input_change())
+
+    avr_status = loop.create_task(setup_avr())
+
+    all_tasks = [vol_up, vol_down, mute, change_input, avr_status]
+    loop.run_forever(all_tasks)
+
+    #loop = asyncio.get_event_loop()
+
+asyncio.run(main())
+
+
+    #  loop.run()
