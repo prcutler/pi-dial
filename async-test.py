@@ -34,9 +34,9 @@ input_rotor.steps = len(zone2_input_list)
 # power_button = Button(21)
 
 
-async def setup_avr():
-    await rec.async_setup()
-    await rec.async_update()
+#async def setup_avr():
+#    await rec.async_setup()
+#    await rec.async_update()
 #    print("Async method volume is: ", rec.volume)
 
 
@@ -57,7 +57,7 @@ async def volume_down():
 
 
 async def main():
-    setup = asyncio.create_task(setup_avr())
+    # setup = asyncio.create_task(setup_avr())
     volume_up_task = asyncio.create_task(volume_up())
     volume_down_task = asyncio.create_task(volume_down())
 
