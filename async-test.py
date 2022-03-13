@@ -42,56 +42,25 @@ async def setup_avr():
     print("Async method volume is: ", rec.volume)
 
 
-async def volume_up():
-    await volume_rotor.when_rotated_clockwise
-    await rec.volume_up
+async def pi_dial():
+    def volume_up():
+        louder_steps = volume_rotor.steps
+        rec.zones["Zone2"].volume_up()
+        rec.zones["Zone2"].update()
+        # print("Turned it up this much: ", louder_steps)
 
-
-async def volume_down():
-    await volume_rotor.when_rotated_counter_clockwise
-    await rec.volume_down
-
-
-async def press_mute():
-    await rec.async_setup()
-
-    if rec.zones["Zone2"].muted is True:
-        await rec.async_mute_off()
-
-        return mute
-    else:
-        await rec.async_mute_on()
-
-
-async def input_change(inp_dir):
-    pass
-
-
-async def input_down():
-    pass
-
-
-async def input_up():
-    pass
+    def volume_down():
+        softer_steps = volume_rotor.steps
+        rec.zones["Zone2"].volume_down()
+        rec.zones["Zone2"].update()
+        # print("Turned it down this much: ", softer_steps)
 
 
 async def main():
+    poll_avr = asyncio.create_task(setup_avr())
+    poll_dial = asyncio.create_task(pi_dial())
 
-    loop = asyncio.get_event_loop()
+    await asyncio.gather(poll_avr, poll_dial)
 
-    vol_up = loop.create_task(volume_up())
-    vol_down = loop.create_task(volume_down())
-    mute = loop.create_task(press_mute())
-    change_input = loop.create_task(input_change())
-
-    avr_status = loop.create_task(setup_avr())
-
-    all_tasks = [vol_up, vol_down, mute, change_input, avr_status]
-    loop.run_forever(all_tasks)
-
-    #loop = asyncio.get_event_loop()
-
-asyncio.run(main())
-
-
-    #  loop.run()
+while True:
+    asyncio.run(main())
