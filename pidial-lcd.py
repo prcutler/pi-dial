@@ -73,7 +73,7 @@ def lcd_display():
         lcd.write_string(display_input)
         lcd.crlf()
         lcd.write_string(display_volume)
-        sleep(1)
+        sleep(0.1)
 
     while True:
         sleep(0.1)
