@@ -34,34 +34,34 @@ input_rotor.steps = len(zone2_input_list)
 # power_button = Button(21)
 
 
-#async def setup_avr():
-
-#    await rec.async_setup()
-#    await rec.async_update()
-
+async def setup_avr():
+    await rec.async_setup()
+    await rec.async_update()
 #    print("Async method volume is: ", rec.volume)
 
 
-async def volume_control():
-    def volume_up():
-        louder_steps = volume_rotor.steps
-        rec.zones["Zone2"].volume_up()
-        rec.zones["Zone2"].update()
+# async def volume_control():
+async def volume_up():
+    louder_steps = volume_rotor.steps
+    rec.zones["Zone2"].volume_up()
+    rec.zones["Zone2"].update()
 
-        print("Turned it up this much: ", louder_steps)
+    print("Turned it up this much: ", louder_steps)
 
-    def volume_down():
-        softer_steps = volume_rotor.steps
-        rec.zones["Zone2"].volume_down()
-        rec.zones["Zone2"].update()
-        # print("Turned it down this much: ", softer_steps)
+
+async def volume_down():
+    softer_steps = volume_rotor.steps
+    rec.zones["Zone2"].volume_down()
+    rec.zones["Zone2"].update()
+    print("Turned it down this much: ", softer_steps)
 
 
 async def main():
-    # poll_avr = asyncio.create_task(setup_avr())
-    poll_dial = asyncio.create_task(volume_control())
+    setup = asyncio.create_task(setup_avr())
+    volume_up_task = asyncio.create_task(volume_up())
+    volume_down_task = asyncio.create_task(volume_down())
 
-    await asyncio.gather(poll_dial)
+    await asyncio.gather(setup, volume_up_task, volume_down_task)
 
 while True:
     asyncio.run(main())
