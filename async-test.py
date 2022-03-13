@@ -61,7 +61,7 @@ async def main():
     # poll_avr = asyncio.create_task(setup_avr())
     poll_dial = asyncio.create_task(volume_control())
 
-    await asyncio.gather(poll_avr, poll_dial)
+    await asyncio.gather(poll_dial)
 
 while True:
     asyncio.run(main())
