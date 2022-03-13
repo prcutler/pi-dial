@@ -43,16 +43,16 @@ input_rotor.steps = len(zone2_input_list)
 # async def volume_control():
 async def volume_up():
     louder_steps = volume_rotor.steps
-    rec.zones["Zone2"].volume_up()
-    rec.zones["Zone2"].update()
+    await rec.zones["Zone2"].volume_up()
+    await rec.zones["Zone2"].update()
 
     print("Turned it up this much: ", louder_steps)
 
 
 async def volume_down():
     softer_steps = volume_rotor.steps
-    rec.zones["Zone2"].volume_down()
-    rec.zones["Zone2"].update()
+    await rec.zones["Zone2"].volume_down()
+    await rec.zones["Zone2"].update()
     print("Turned it down this much: ", softer_steps)
 
 
