@@ -10,7 +10,8 @@ zones = {"Zone2": "Paul Office"}
 rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.async_update()
 rec.zones["Zone2"].async_update()
-rec_volume = float(rec.zones["Zone2"].volume)
+# rec_volume = float(rec.zones["Zone2"].volume)
+rec_volume = rec.zones["Zone2"].async_set_volume(40)
 
 # Zone 2 information
 zone2_volume = rec.zones["Zone2"].volume
