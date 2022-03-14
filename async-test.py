@@ -34,17 +34,17 @@ input_rotor.steps = len(zone2_input_list)
 # power_button = Button(21)
 
 
-#async def setup_avr():
-#    await rec.async_setup()
-#    await rec.async_update()
+async def setup_avr():
+    await rec.async_setup()
+    await rec.async_update()
 #    print("Async method volume is: ", rec.volume)
 
 
 # async def volume_control():
 async def volume_up():
     louder_steps = volume_rotor.steps
-    rec.zones["Zone2"].volume_up()
-    rec.zones["Zone2"].update()
+    rec.zones["Zone2"].async_volume_up()
+    rec.zones["Zone2"].async_update()
     await asyncio.sleep(0.1)
 
     # print("Turned it up this much: ", louder_steps)
@@ -52,8 +52,8 @@ async def volume_up():
 
 async def volume_down():
     softer_steps = volume_rotor.steps
-    await rec.zones["Zone2"].volume_down()
-    await rec.zones["Zone2"].update()
+    await rec.zones["Zone2"].async_volume_down()
+    await rec.zones["Zone2"].async_update()
     await asyncio.sleep(0.1)
     # print("Turned it down this much: ", softer_steps)
 
