@@ -60,6 +60,7 @@ async def volume_down():
 
 async def rotor_control():
     volume_rotor.when_rotated_clockwise = volume_up
+    await volume_up()
     volume_rotor.when_rotated_counter_clockwise = volume_down
     # await volume_up
     # await volume_down
@@ -67,7 +68,7 @@ async def rotor_control():
 
 
 async def main():
-    # setup = asyncio.create_task(setup_avr())
+    setup = asyncio.create_task(setup_avr())
     # volume_up_task = asyncio.create_task(volume_up())
     # volume_down_task = asyncio.create_task(volume_down())
     rotor_task = asyncio.create_task(rotor_control())
