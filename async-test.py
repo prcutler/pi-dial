@@ -61,6 +61,8 @@ async def volume_down():
 async def rotor_control():
     volume_rotor.when_rotated_clockwise = volume_up
     volume_rotor.when_rotated_counter_clockwise = volume_down
+    await volume_up()
+    await volume_down()
 
 
 async def main():
