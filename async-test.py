@@ -68,11 +68,11 @@ async def rotor_control():
 
 async def main():
     # setup = asyncio.create_task(setup_avr())
-    # volume_up_task = asyncio.create_task(volume_up())
-    # volume_down_task = asyncio.create_task(volume_down())
+    volume_up_task = asyncio.create_task(volume_up())
+    volume_down_task = asyncio.create_task(volume_down())
     rotor_task = asyncio.create_task(rotor_control())
 
-    await asyncio.gather(rotor_task)
+    await asyncio.gather(volume_up_task, volume_down_task, rotor_task)
 
 
 while True:
