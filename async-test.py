@@ -8,8 +8,8 @@ from gpiozero import Button, RotaryEncoder
 # Connect to the Denon receiver
 zones = {"Zone2": "Paul Office"}
 rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
-rec.update()
-rec.zones["Zone2"].update()
+rec.async_update()
+rec.zones["Zone2"].async_update()
 rec_volume = float(rec.zones["Zone2"].volume)
 
 # Zone 2 information
