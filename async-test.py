@@ -72,7 +72,7 @@ async def main():
     volume_down_task = asyncio.create_task(volume_down())
     rotor_task = asyncio.create_task(rotor_control())
 
-    await asyncio.gather(volume_up_task, volume_down_task, rotor_task)
+    await asyncio.gather(rotor_task)
 
 
 while True:
