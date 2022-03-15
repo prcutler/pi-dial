@@ -85,6 +85,8 @@ async def press_mute():
 
     if rec.zones["Zone2"].muted is True:
         await rec.async_mute_off()
+
+        return mute
     else:
         await rec.async_mute_on()
 

@@ -11,7 +11,7 @@ rec = denonavr.DenonAVR("192.168.1.119", name="Main Zone", add_zones=zones)
 rec.async_update()
 rec.zones["Zone2"].async_update()
 # rec_volume = float(rec.zones["Zone2"].volume)
-await rec_volume = rec.zones["Zone2"].async_set_volume(40)
+rec_volume = rec.zones["Zone2"].async_set_volume(40)
 
 # Zone 2 information
 zone2_volume = rec.zones["Zone2"].volume
@@ -36,16 +36,16 @@ input_rotor.steps = len(zone2_input_list)
 
 
 async def setup_avr():
-    await rec.async_setup()
-    await rec.async_update()
+#    rec.zones["Zone2"].async_update()
+    await rec.zones["Zone2"].async_update()
 #    print("Async method volume is: ", rec.volume)
 
 
 # async def volume_control():
 async def volume_up():
     louder_steps = volume_rotor.steps
-    rec.zones["Zone2"].async_volume_up()
-    rec.zones["Zone2"].async_update()
+    await rec.zones["Zone2"].async_volume_up()
+    await rec.zones["Zone2"].async_update()
     await asyncio.sleep(0.1)
 
     # print("Turned it up this much: ", louder_steps)
@@ -64,17 +64,17 @@ async def rotor_control():
     await volume_up()
     volume_rotor.when_rotated_counter_clockwise = volume_down
     # await volume_up
-    # await volume_down
+    await volume_down()
     await asyncio.sleep(0.1)
 
 
 async def main():
     setup = asyncio.create_task(setup_avr())
-    # volume_up_task = asyncio.create_task(volume_up())
-    # volume_down_task = asyncio.create_task(volume_down())
+    volume_up_task = asyncio.create_task(volume_up())
+    volume_down_task = asyncio.create_task(volume_down())
     rotor_task = asyncio.create_task(rotor_control())
 
-    await asyncio.gather(setup, rotor_task)
+    await asyncio.gather(setup, volume_up_task, volume_down_task, rotor_task)
 
 
 while True:
