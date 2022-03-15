@@ -21,7 +21,7 @@ zone2_input_list = rec.zones["Zone2"].input_func_list
 # Connect to the Rotary Encoders connected to the Raspberry PI
 # Rotary Encoder 1
 volume_rotor = RotaryEncoder(5, 6, wrap=False, max_steps=60)
-volume_rotor.steps = rec_volume
+volume_rotor.steps = 30  # rec_volume
 mute_button = Button(13)
 
 # Rotary Encoder 2
