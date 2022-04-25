@@ -7,7 +7,7 @@ cfgv==3.3.1
 charset-normalizer==2.0.12
 colorzero==2.0
 defusedxml==0.7.1
-denonavr==0.10.10
+denonavr==0.10.11
 distlib==0.3.4
 filelock==3.6.0
 gpiozero==1.6.2
