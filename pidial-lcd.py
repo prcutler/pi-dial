@@ -62,7 +62,7 @@ def lcd_display():
         if rec.zones["Zone2"].muted is False:
 
             lcd.clear()
-            display_volume = "Volume: " + str(rec.zones["Zone2"].volume)
+            display_volume = "Volume: " + str(rec.zones["Zone2"].volume + 80)
             display_input = "Input: " + str(zone2_input)
 
         else:
