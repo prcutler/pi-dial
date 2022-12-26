@@ -22,7 +22,7 @@ nodeenv==1.7.0
 pigpio==1.78
 pkg-resources==0.0.0
 platformdirs==2.6.0
-pre-commit==2.20.0
+pre-commit==2.21.0
 PyYAML==6.0
 rfc3986==2.0.0
 RPi.GPIO==0.7.1
