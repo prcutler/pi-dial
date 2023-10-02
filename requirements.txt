@@ -10,7 +10,7 @@ defusedxml==0.7.1
 denonavr==0.11.4
 distlib==0.3.7
 filelock==3.12.4
-gpiozero==1.6.2
+gpiozero==2.0
 h11==0.14.0
 httpcore==0.18.0
 identify==2.5.30
