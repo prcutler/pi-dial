@@ -21,7 +21,7 @@ netifaces==0.11.0
 nodeenv==1.8.0
 pigpio==1.78
 pkg-resources==0.0.0
-platformdirs==3.10.0
+platformdirs==3.11.0
 pre-commit==3.4.0
 PyYAML==6.0.1
 rfc3986==2.0.0
