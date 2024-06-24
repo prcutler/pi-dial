@@ -16,7 +16,7 @@ httpcore==1.0.5
 identify==2.5.36
 httpx==0.27.0
 idna==3.7
-importlib-metadata==7.1.0
+importlib-metadata==7.2.1
 netifaces==0.11.0
 nodeenv==1.9.1
 pigpio==1.78
