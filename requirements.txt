@@ -13,7 +13,7 @@ filelock==3.16.0
 gpiozero==2.0.1
 h11==0.14.0
 httpcore==1.0.5
-identify==2.6.0
+identify==2.6.1
 httpx==0.27.2
 idna==3.8
 importlib-metadata==8.4.0
