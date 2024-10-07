@@ -15,7 +15,7 @@ h11==0.14.0
 httpcore==1.0.6
 identify==2.6.1
 httpx==0.27.2
-idna==3.8
+idna==3.10
 importlib-metadata==8.5.0
 netifaces==0.11.0
 nodeenv==1.9.1
