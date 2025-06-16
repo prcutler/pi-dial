@@ -2,7 +2,7 @@ anyio==4.9.0
 asyncstdlib==3.13.1
 attrs==25.3.0
 backports.entry-points-selectable==1.3.0
-certifi==2025.4.26
+certifi==2025.6.15
 cfgv==3.4.0
 charset-normalizer==3.4.2
 colorzero==2.0
