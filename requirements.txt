@@ -18,7 +18,7 @@ httpx==0.28.1
 idna==3.11
 importlib-metadata==8.7.0
 netifaces==0.11.0
-nodeenv==1.9.1
+nodeenv==1.10.0
 pigpio==1.78
 pkg-resources==0.0.0
 platformdirs==4.5.1
